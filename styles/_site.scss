@@ -1,0 +1,38 @@
+/*
+// .site
+*/
+@import "./variables";
+
+.site {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  flex-shrink: 0;
+  background-color: $primary-color;
+  height: $site-header-height;
+}
+
+.site-header__logo {
+  height: $site-header-logo-height;
+  object-fit: contain;
+  //   margin-top: 50%;
+  //   margin-bottom: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+
+.site-body {
+  flex-grow: 1;
+}
+
+.site-footer {
+  flex-shrink: 0;
+}
+
+@media (max-width: breakpoint(md-start)) {
+}
