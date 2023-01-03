@@ -1,0 +1,112 @@
+/*
+// base
+*/
+@import "./variables";
+
+html {
+  height: 100%;
+  font-size: 14px;
+}
+
+:root {
+  --appFont: "Georgia", "sans-serif";
+  --bodyFont: "Roboto", "sans-serif";
+}
+
+#root,
+#__next {
+  height: 100%;
+}
+
+// ----------------------------------------
+// -- Text
+// ----------------------------------------
+
+body {
+  height: 100%;
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
+  line-height: $body-line-height;
+  color: $body-font-color;
+  backface-visibility: hidden;
+  overflow-y: scroll;
+}
+
+text,
+.text,
+p {
+  font-family: $body-font-family;
+  font-size: $body-font-size-2;
+  font-weight: $body-font-weight-2;
+  line-height: $body-line-height-2;
+  color: $body-font-color;
+  font-style: normal;
+}
+
+small,
+.small {
+  font-family: $small-font-family;
+  font-size: $small-font-size;
+  font-weight: $small-font-weight;
+  line-height: $small-line-height;
+  color: $small-font-color;
+}
+
+h1,
+.h1 {
+  font-family: $h1-font-family;
+  font-size: $h1-font-size;
+  font-weight: $h1-font-weight;
+  font-style: $h1-font-style;
+  line-height: $h1-font-line-height;
+}
+
+h2,
+.h2 {
+  font-family: $h2-font-family;
+  font-size: $h2-font-size;
+  font-weight: $h2-font-weight;
+  font-style: $h2-font-style;
+  line-height: $h2-font-line-height;
+}
+
+h3,
+.h3 {
+  font-family: $h3-font-family;
+  font-size: $h3-font-size;
+  font-weight: $h3-font-weight;
+  font-style: $h3-font-style;
+  line-height: $h3-font-line-height;
+}
+
+h4,
+.h4 {
+  font-family: $h4-font-family;
+  font-size: $h4-font-size;
+  font-weight: $h4-font-weight;
+  font-style: $h4-font-style;
+  line-height: $h4-font-line-height;
+}
+
+h5,
+.h5 {
+  font-size: $h5-font-size;
+  font-family: $h5-font-family;
+  font-weight: $h5-font-weight;
+  font-style: $h5-font-style;
+  line-height: $h5-font-line-height;
+}
+
+h6,
+.h6 {
+  font-family: $h6-font-family;
+  font-size: $h6-font-size;
+  font-weight: $h6-font-weight;
+  font-style: $h6-font-style;
+  line-height: $h6-font-line-height;
+}
+
+// ----------------------------------------
+// -- Layout
+// ----------------------------------------
