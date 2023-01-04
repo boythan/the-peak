@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Fragment, useMemo } from "react";
 import BookmarkButton from "../../components/bookmark/BookmarkButton";
 import Dropdown from "../../components/dropdown/Dropdown";
 import classnames from "classnames";
+import API from "../../api/API";
 
 interface IHomePage {}
 
 const HomePage = ({}: IHomePage) => {
+  useEffect(() => {
+    loadNews();
+  }, []);
+
+  const loadNews = () => {
+    API.search({ q: "debate" }).then((res: any) => {
+      const newsList = res?.data?.response?.results ?? [];
+      console.log("newsList", newsList);
+    });
+  };
+
   return (
     <Fragment>
       <div className="container">
