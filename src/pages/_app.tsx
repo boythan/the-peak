@@ -33,8 +33,6 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   const content = useMemo(() => {
-    // const PageLayout = Component.Layout || Fragment;
-
     return (
       <AppLayout>
         <Component {...pageProps} />

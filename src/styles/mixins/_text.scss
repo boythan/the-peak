@@ -1,0 +1,8 @@
+@mixin number-of-line($lines: 3) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+}

@@ -1,0 +1,32 @@
+@import "../variables";
+@import "../mixins/text";
+
+.news-card {
+  position: relative;
+  height: 100%;
+  flex: 1;
+}
+
+.news-card__image {
+  object-fit: cover;
+}
+
+.news-card__info {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: $primary-color-9;
+  padding: $spacer-1;
+  height: 40%;
+}
+
+.news-card__info-title {
+  color: white !important;
+  @include number-of-line(2);
+}
+
+.news-card__info-trail {
+  color: white !important;
+  @include number-of-line(3);
+}
