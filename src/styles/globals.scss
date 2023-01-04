@@ -26,7 +26,8 @@ html {
 // -- Text
 // ----------------------------------------
 
-body {
+body,
+.body {
   height: 100%;
   font-family: $body-font-family;
   font-size: $body-font-size;
@@ -36,6 +37,7 @@ body {
   backface-visibility: hidden;
   overflow-y: scroll;
   margin: initial;
+  background-color: white;
 }
 
 text,

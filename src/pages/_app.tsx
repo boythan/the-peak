@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { useEffect, useMemo } from "react";
 import "../styles/globals.scss";
 import "../styles/index.scss";
-import Layout from "./screen/Layout";
+import AppLayout from "./AppLayout";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -36,9 +36,9 @@ export default function App({ Component, pageProps }: AppProps) {
     // const PageLayout = Component.Layout || Fragment;
 
     return (
-      <Layout>
+      <AppLayout>
         <Component {...pageProps} />
-      </Layout>
+      </AppLayout>
     );
   }, [Component, pageProps]);
 

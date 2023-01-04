@@ -1,11 +1,12 @@
 // react
+import Image from "next/image";
 import { Fragment, PropsWithChildren } from "react";
 import AppLink from "../components/AppLink";
 import Icon from "../components/icon/Icon";
 
-export interface LayoutProps extends PropsWithChildren<{}> {}
+export interface AppLayoutProps extends PropsWithChildren<{}> {}
 
-function Layout(props: LayoutProps) {
+function AppLayout(props: AppLayoutProps) {
   const { children } = props;
   //general
 
@@ -23,7 +24,7 @@ function Layout(props: LayoutProps) {
           </div>
         </header>
 
-        <div className="site-body">{children}</div>
+        <div className="site-body body">{children}</div>
 
         <footer className="site-footer" />
       </div>
@@ -31,4 +32,4 @@ function Layout(props: LayoutProps) {
   );
 }
 
-export default Layout;
+export default AppLayout;
