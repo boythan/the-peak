@@ -1,6 +1,7 @@
 // react
-import classnames from "classnames";
 import { Fragment, PropsWithChildren } from "react";
+import AppLink from "../components/AppLink";
+import Icon from "../components/icon/Icon";
 
 export interface LayoutProps extends PropsWithChildren<{}> {}
 
@@ -8,28 +9,23 @@ function Layout(props: LayoutProps) {
   const { children } = props;
   //general
 
-  const bodyClass = classnames("site-body");
-
-  const footerClass = classnames("site-footer");
-
-  if (false) {
-    return <Fragment>{children} </Fragment>;
-  }
-
   return (
     <Fragment>
       <div className="site">
-        <header className="site-header ">
+        <header className="site-header">
           <div className="container position-relative h-100">
-            <img src="/images/logo.png" className="site-header__logo" />
+            <AppLink href={"/"}>
+              <img src="/images/logo.png" className="site-header__logo" />
+            </AppLink>
+            <div className="site-header__search-container flex-center p-1">
+              <Icon name="search" className="text-white" />
+            </div>
           </div>
         </header>
 
-        <div className={bodyClass}>{children}</div>
+        <div className="site-body">{children}</div>
 
-        <footer className={footerClass}>
-          <div />
-        </footer>
+        <footer className="site-footer" />
       </div>
     </Fragment>
   );

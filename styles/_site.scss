@@ -18,12 +18,18 @@
 .site-header__logo {
   height: $site-header-logo-height;
   object-fit: contain;
-  //   margin-top: 50%;
-  //   margin-bottom: 50%;
   position: absolute;
   top: 0;
   bottom: 0;
   margin: auto 0;
+}
+
+.site-header__search-container {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border-bottom: 2px solid white;
+  min-width: 90px;
 }
 
 .site-body {
@@ -32,7 +38,6 @@
 
 .site-footer {
   flex-shrink: 0;
-}
-
-@media (max-width: breakpoint(md-start)) {
+  background-color: $primary-color;
+  height: $site-footer-height;
 }

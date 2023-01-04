@@ -1,14 +1,19 @@
 // ----------------------------------------
-// -- colors
+// -- Colors
 // ----------------------------------------
-// light
 $primary-color: rgba(9, 53, 123, 1) !default;
 
 // ----------------------------------------
-// -- common
+// -- Spacing
+// ----------------------------------------
+$spacer-1: 9px !default;
+$spacer-2: 12px !default;
+$spacer-3: 16px !default;
+
+// ----------------------------------------
+// -- Font weight
 // ----------------------------------------
 
-// Font Weight
 $font-weight-thin: 100 !default;
 $font-weight-extra-light: 200 !default;
 $font-weight-light: 300 !default;
@@ -18,19 +23,6 @@ $font-weight-semi-bold: 600 !default;
 $font-weight-bold: 700 !default;
 $font-weight-extra-bold: 800 !default;
 $font-weight-black: 900 !default;
-
-// breakpoints
-$breakpoints: (
-  xs-start: 0px,
-  xs-end: 575px,
-  sm-start: 576px,
-  sm-end: 767px,
-  md-start: 768px,
-  md-end: 991px,
-  lg-start: 992px,
-  lg-end: 1199px,
-  xl-start: 1200px,
-);
 
 // ----------------------------------------
 // -- body
@@ -96,10 +88,33 @@ $h6-font-weight: $headers-font-weight !default;
 $h6-font-style: $headers-font-style !default;
 
 // ----------------------------------------
+// -- Layout
+// ----------------------------------------
+
+// breakpoints
+$breakpoints: (
+  xs-start: 0px,
+  xs-end: 575px,
+  sm-start: 576px,
+  sm-end: 767px,
+  md-start: 768px,
+  md-end: 991px,
+  lg-start: 992px,
+  lg-end: 1199px,
+  xl-start: 1200px,
+);
+
+$container-sm-max-width: 540px !default;
+$container-md-max-width: 720px !default;
+$container-lg-max-width: 960px !default;
+$container-xl-max-width: 1140px !default;
+
+// ----------------------------------------
 // -- Site Header
 // ----------------------------------------
 
 $site-header-height: 126px !default;
+$site-footer-height: 243px !default;
 $site-header-logo-height: 56px !default;
 
 // ----------------------------------------

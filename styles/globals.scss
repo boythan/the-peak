@@ -112,6 +112,14 @@ h6,
   line-height: $h6-font-line-height;
 }
 
+.text-primary {
+  color: $primary-color;
+}
+
+.text-white {
+  color: white;
+}
+
 // ----------------------------------------
 // -- Width/Height
 // ----------------------------------------
@@ -125,9 +133,46 @@ h6,
 }
 
 // ----------------------------------------
+// -- Spacing
+// ----------------------------------------
+
+.m-0 {
+  margin-top: 0 !important;
+}
+
+.m-1 {
+  margin: $spacer-1 !important;
+}
+
+.m-2 {
+  margin: $spacer-2 !important;
+}
+
+.m-3 {
+  margin: $spacer-3 !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.p-1 {
+  padding: $spacer-1 !important;
+}
+
+.p-2 {
+  padding: $spacer-3 !important;
+}
+
+.p-3 {
+  padding: $spacer-3 !important;
+}
+
+// ----------------------------------------
 // -- Layout
 // ----------------------------------------
 
+// Position
 .position-absolute {
   position: absolute;
 }
@@ -136,6 +181,7 @@ h6,
   position: relative;
 }
 
+// Container
 .container {
   width: 100%;
   margin-right: auto;
@@ -144,24 +190,39 @@ h6,
 
 @media (min-width: breakpoint(sm-start)) {
   .container {
-    max-width: 540px;
+    max-width: $container-sm-max-width;
   }
 }
 
 @media (min-width: breakpoint(md-start)) {
   .container {
-    max-width: 720px;
+    max-width: $container-md-max-width;
   }
 }
 
 @media (min-width: breakpoint(lg-start)) {
   .container {
-    max-width: 960px;
+    max-width: $container-lg-max-width;
   }
 }
 
 @media (min-width: breakpoint(xl-start)) {
   .container {
-    max-width: 1140px;
+    max-width: $container-xl-max-width;
   }
+}
+
+// Flex
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
