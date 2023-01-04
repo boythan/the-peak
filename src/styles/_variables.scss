@@ -3,6 +3,9 @@
 // ----------------------------------------
 $primary-color: rgba(9, 53, 123, 1) !default;
 
+$text-dark: rgba(0, 0, 0, 0.87) !default;
+$text-light: rgb(255, 255, 255) !default;
+
 // ----------------------------------------
 // -- Spacing
 // ----------------------------------------
@@ -27,7 +30,7 @@ $font-weight-black: 900 !default;
 // ----------------------------------------
 // -- body
 // ----------------------------------------
-$body-font-color: rgba(0, 0, 0, 0.87) !default;
+$body-font-color: $text-dark !default;
 
 $body-font-family: var(--bodyFont) !default;
 $body-font-size: 16px !default;
@@ -38,7 +41,7 @@ $body-font-size-2: 14px !default;
 $body-line-height-2: 20px !default;
 $body-font-weight-2: $font-weight-normal !default;
 
-$small-font-color: rgba(0, 0, 0, 0.87) !default;
+$small-font-color: $text-dark !default;
 $small-font-size: 12px !default;
 $small-font-weight: $font-weight-normal !default;
 $small-line-height: 14px !default;
@@ -104,10 +107,37 @@ $breakpoints: (
   xl-start: 1200px,
 );
 
+//container max width
 $container-sm-max-width: 540px !default;
 $container-md-max-width: 720px !default;
 $container-lg-max-width: 960px !default;
 $container-xl-max-width: 1140px !default;
+
+// ----------------------------------------
+// -- Border
+// ----------------------------------------
+
+$border-radius-1: 4px !default;
+
+// ----------------------------------------
+// -- Components
+// ----------------------------------------
+//Icon
+$icon-small: 15px !default;
+$icon-medium: 30px !default;
+$icon-large: 50px !default;
+
+//Dropdown
+$dropdown-bg: transparent !default;
+$dropdown-font-color: inherit !default;
+$dropdown-transition-duration: 0.2s;
+$dropdown-border: 1px solid rgba(0, 0, 0, 0.42);
+
+//menu
+$menu-bg: #ffffff !default;
+$menu-min-width: 150px !default;
+$menu-shadow: 0 1px 15px rgba(#000, 0.25) !default;
+$menu-item-hover-bg: rgba(#000, 0.05) !default;
 
 // ----------------------------------------
 // -- Site Header

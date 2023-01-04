@@ -1,0 +1,15 @@
+@import "../variables";
+
+.icon {
+  &-small {
+    font-size: $icon-small;
+  }
+
+  &-medium {
+    font-size: $icon-medium;
+  }
+
+  &-large {
+    font-size: $icon-large;
+  }
+}

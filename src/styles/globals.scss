@@ -123,6 +123,21 @@ h6,
 }
 
 // ----------------------------------------
+// -- Border
+// ----------------------------------------
+.border-radius-1 {
+  border-radius: $border-radius-1;
+}
+
+// ----------------------------------------
+// -- Background
+// ----------------------------------------
+
+.bg-primary {
+  background-color: $primary-color;
+}
+
+// ----------------------------------------
 // -- Width/Height
 // ----------------------------------------
 
@@ -137,9 +152,9 @@ h6,
 // ----------------------------------------
 // -- Spacing
 // ----------------------------------------
-
+// margin
 .m-0 {
-  margin-top: 0 !important;
+  margin: 0 !important;
 }
 
 .m-1 {
@@ -153,7 +168,24 @@ h6,
 .m-3 {
   margin: $spacer-3 !important;
 }
+//margin right
+.ml-0 {
+  margin-left: 0 !important;
+}
 
+.ml-1 {
+  margin-left: $spacer-1 !important;
+}
+
+.ml-2 {
+  margin-left: $spacer-2 !important;
+}
+
+.ml-3 {
+  margin-left: $spacer-3 !important;
+}
+
+//padding
 .p-0 {
   padding: 0 !important;
 }
@@ -168,6 +200,18 @@ h6,
 
 .p-3 {
   padding: $spacer-3 !important;
+}
+
+// padding vertical
+.py-1 {
+  padding-top: $spacer-1 !important;
+  padding-bottom: $spacer-1 !important;
+}
+
+// padding horizontal
+.px-2 {
+  padding-left: $spacer-2 !important;
+  padding-right: $spacer-2 !important;
 }
 
 // ----------------------------------------
@@ -226,5 +270,11 @@ h6,
 .flex-center {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.flex-between-center {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }

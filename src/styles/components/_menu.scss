@@ -1,0 +1,32 @@
+@import "../variables";
+
+.menu {
+  color: $text-dark;
+  background: $menu-bg;
+  box-shadow: $menu-shadow;
+  list-style: none;
+  padding: $spacer-1 0;
+  min-width: $menu-min-width;
+  > li {
+    position: relative;
+  }
+
+  > li > button {
+    background: transparent;
+    border: none;
+    width: 100%;
+    font-weight: inherit;
+    display: block;
+    padding-top: $spacer-1;
+    padding-bottom: $spacer-1;
+    color: inherit;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  > li:hover > button {
+    background: $menu-item-hover-bg;
+  }
+}
