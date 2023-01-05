@@ -26,6 +26,15 @@ html {
 // -- Text
 // ----------------------------------------
 
+a {
+  color: $body-font-color;
+}
+
+a:hover {
+  color: $body-font-color;
+  text-decoration: none;
+}
+
 body,
 .body {
   height: 100%;

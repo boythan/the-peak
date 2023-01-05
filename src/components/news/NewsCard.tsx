@@ -14,9 +14,12 @@ export interface NewsCardProps {
 }
 
 function NewsCard(props: NewsCardProps) {
-  const { news, layout } = props;
+  const { news, layout = "grid-md" } = props;
   const { fields, id, webTitle } = news;
-  const containerClasses = classnames("news-card");
+  const containerClasses = classnames(
+    "news-card",
+    `news-card__layout-${layout}`
+  );
   const imageClass = classnames("news-card__image");
 
   return (

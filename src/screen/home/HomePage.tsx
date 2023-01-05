@@ -44,7 +44,19 @@ const HomePage = ({}: IHomePage) => {
         </div>
         <div className="wrapper" style={{ height: "347px" }}>
           {map(slice(newsList, 0, 3), (news) => (
-            <NewsCard news={news} />
+            <NewsCard news={news} layout="grid-lg" />
+          ))}
+        </div>
+
+        <div className="wrapper" style={{ height: "347px" }}>
+          {map(slice(newsList, 0, 3), (news) => (
+            <NewsCard news={news} layout="grid-md" />
+          ))}
+        </div>
+
+        <div className="wrapper">
+          {map(slice(newsList, 0, 3), (news) => (
+            <NewsCard news={news} layout="grid-sm" />
           ))}
         </div>
       </div>
