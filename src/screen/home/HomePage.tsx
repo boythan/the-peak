@@ -8,22 +8,25 @@ import { map, slice } from "lodash";
 import { INews } from "../../interface/news";
 import NewsCard from "../../components/news/NewsCard";
 import NewsBlockSport from "../../components/news/NewsBlockSport";
+import { NEWS_HOME_SORT } from "../../constant/news";
 
 interface IHomePage {}
 
 const HomePage = ({}: IHomePage) => {
   const [topStories, setTopStories] = useState<INews[]>([]);
+  const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
 
   useEffect(() => {
     loadNews();
-  }, []);
+  }, [sortBy]);
 
   const loadNews = () => {
     API.search({
-      q: "debate",
+      q: "",
       "show-fields": "thumbnail,trailText",
       page: 1,
       "page-size": 8,
+      "order-by": sortBy?.id,
     }).then((res: any) => {
       const newsList = res?.data?.response?.results ?? [];
       setTopStories(newsList);
@@ -38,9 +41,9 @@ const HomePage = ({}: IHomePage) => {
           <div className="d-flex">
             <BookmarkButton className={"ml-3"} />
             <Dropdown
-              label="Catgory"
-              items={[{ id: 1, label: "Title1" }]}
-              onClick={(item) => {}}
+              label={sortBy?.label}
+              items={NEWS_HOME_SORT}
+              onClick={(item) => setSortBy(item)}
               classButton="text-white"
               className={classnames("ml-3")}
             />

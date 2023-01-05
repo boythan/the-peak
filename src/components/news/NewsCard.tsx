@@ -19,15 +19,13 @@ function NewsCard(props: NewsCardProps) {
 
   return (
     <AppLink href={"/home"} className={containerClasses}>
-      <Image
-        className={imageClass}
-        layout="fill"
-        src={fields?.thumbnail}
-        alt={id}
-      />
+      <img className={imageClass} src={fields?.thumbnail} />
       <div className="news-card__info">
         <h6 className="news-card__info-title">{webTitle}</h6>
-        <text className="news-card__info-trail">{fields?.trailText}</text>
+        <text
+          className="news-card__info-trail"
+          dangerouslySetInnerHTML={{ __html: fields?.trailText }}
+        />
       </div>
     </AppLink>
   );
