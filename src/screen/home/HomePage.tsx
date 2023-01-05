@@ -42,7 +42,7 @@ const HomePage = ({}: IHomePage) => {
             />
           </div>
         </div>
-        <div className="d-flex" style={{ height: "347px" }}>
+        <div className="wrapper" style={{ height: "347px" }}>
           {map(slice(newsList, 0, 3), (news) => (
             <NewsCard news={news} />
           ))}
