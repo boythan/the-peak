@@ -9,6 +9,9 @@ import { INews } from "../../interface/news";
 import NewsCard from "../../components/news/NewsCard";
 import NewsBlockSport from "../../components/news/NewsBlockSport";
 import { NEWS_HOME_SORT } from "../../constant/news";
+import NewsBlockHeader from "../../components/news/NewsBlockHeader";
+import NewsBlockCulture from "../../components/news/NewsBlockCulture";
+import NewsBlockLifeStyle from "../../components/news/NewsBlockLifeStyle";
 
 interface IHomePage {}
 
@@ -22,11 +25,11 @@ const HomePage = ({}: IHomePage) => {
 
   const loadNews = () => {
     API.search({
-      q: "",
       "show-fields": "thumbnail,trailText",
       page: 1,
       "page-size": 8,
       "order-by": sortBy?.id,
+      section: "news",
     }).then((res: any) => {
       const newsList = res?.data?.response?.results ?? [];
       setTopStories(newsList);
@@ -36,19 +39,11 @@ const HomePage = ({}: IHomePage) => {
   return (
     <Fragment>
       <div className="container">
-        <div className="home__title-container">
-          <h3>Top stories</h3>
-          <div className="d-flex">
-            <BookmarkButton className={"ml-3"} />
-            <Dropdown
-              label={sortBy?.label}
-              items={NEWS_HOME_SORT}
-              onClick={(item) => setSortBy(item)}
-              classButton="text-white"
-              className={classnames("ml-3")}
-            />
-          </div>
-        </div>
+        <NewsBlockHeader
+          sortBy={sortBy}
+          onChangeSort={(item) => setSortBy(item)}
+          title="Top stories"
+        />
         <div className="home__top-story-grid home__top-story-banner">
           {map(slice(topStories, 0, 5), (news, index) => (
             <NewsCard news={news} className={"top-story-" + index} />
@@ -59,7 +54,9 @@ const HomePage = ({}: IHomePage) => {
             <NewsCard news={news} className={"top-story-" + (index + 5)} />
           ))}
         </div>
-        <NewsBlockSport className="home__news-sport-block" />
+        <NewsBlockSport className="home__news-block" />
+        <NewsBlockCulture className="home__news-block" />
+        <NewsBlockLifeStyle className="home__news-block" />
       </div>
     </Fragment>
   );

@@ -119,6 +119,20 @@ $container-xl-max-width: 1140px !default;
 $border-radius-1: 4px !default;
 
 // ----------------------------------------
+// -- Site
+// ----------------------------------------
+$site-header-height: 126px !default;
+$site-footer-height: 243px !default;
+$site-header-logo-height: 56px !default;
+
+// ----------------------------------------
+// -- Home
+// ----------------------------------------
+$home-grid-card-gap: 30px !default;
+$home-top-story-banner-height: 423px !default;
+$home-top-story-footer-height: 347px !default;
+
+// ----------------------------------------
 // -- Components
 // ----------------------------------------
 //Icon
@@ -139,21 +153,8 @@ $menu-shadow: 0 1px 15px rgba(#000, 0.25) !default;
 $menu-item-hover-bg: rgba(#000, 0.05) !default;
 
 //news card
-$news-card-height: 350px;
-
-// ----------------------------------------
-// -- Site
-// ----------------------------------------
-$site-header-height: 126px !default;
-$site-footer-height: 243px !default;
-$site-header-logo-height: 56px !default;
-
-// ----------------------------------------
-// -- Home
-// ----------------------------------------
-$home-grid-card-gap: 30px !default;
-$home-top-story-banner-height: 423px !default;
-$home-top-story-footer-height: 347px !default;
+$news-card-height: 350px !default;
+$news-card-width: calc(100% / 3 - $home-grid-card-gap * 2 / 3) !default;
 
 // ----------------------------------------
 // -- Mobile UI

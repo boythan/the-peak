@@ -4,20 +4,20 @@ import NewsBlock from "./NewsBlock";
 import classnames from "classnames";
 import API from "../../api/API";
 
-interface INewsBlockSport {
+interface INewsBlockLifeStyle {
   className?: any;
 }
 
-const NewsBlockSport = ({ className }: INewsBlockSport) => {
-  const [newsSport, setNewsSport] = useState<INews[]>([]);
+const NewsBlockLifeStyle = ({ className }: INewsBlockLifeStyle) => {
+  const [newsLifeStyle, setNewsLifeStyle] = useState<INews[]>([]);
 
   useEffect(() => {
-    loadNewsSport();
+    loadNewsLifeStyle();
   }, []);
 
-  const loadNewsSport = () => {
+  const loadNewsLifeStyle = () => {
     const params = {
-      section: "sport",
+      section: "lifeandstyle",
       "show-fields": "thumbnail,trailText",
       page: 1,
       "page-size": 3,
@@ -25,17 +25,17 @@ const NewsBlockSport = ({ className }: INewsBlockSport) => {
 
     API.search(params).then((res) => {
       const newsList = res?.data?.response?.results ?? [];
-      setNewsSport(newsList);
+      setNewsLifeStyle(newsList);
     });
   };
 
   const classNameContainer = classnames("flex-column", className);
   return (
     <div className={classNameContainer}>
-      <h6>Sports</h6>
-      <NewsBlock newsList={newsSport} />
+      <h6>Life and style</h6>
+      <NewsBlock newsList={newsLifeStyle} />
     </div>
   );
 };
 
-export default NewsBlockSport;
+export default NewsBlockLifeStyle;

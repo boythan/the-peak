@@ -52,11 +52,12 @@
 }
 
 .home__top-story-footer {
+  grid-template-columns: $news-card-width $news-card-width $news-card-width;
   height: $home-top-story-footer-height;
   margin-top: $home-grid-card-gap;
   grid-template-areas: "top-story-5 top-story-6 top-story-7";
 }
 
-.home__news-sport-block {
+.home__news-block {
   margin-top: 50px;
 }
