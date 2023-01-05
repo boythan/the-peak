@@ -3,6 +3,8 @@ import { useEffect, useMemo } from "react";
 import "../styles/globals.scss";
 import "../styles/index.scss";
 import AppLayout from "./AppLayout";
+import { NextAdapter } from "next-query-params";
+import { QueryParamProvider } from "use-query-params";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -34,9 +36,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const content = useMemo(() => {
     return (
-      <AppLayout>
-        <Component {...pageProps} />
-      </AppLayout>
+      <QueryParamProvider adapter={NextAdapter}>
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
+      </QueryParamProvider>
     );
   }, [Component, pageProps]);
 

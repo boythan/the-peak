@@ -1,6 +1,7 @@
 import { map, slice } from "lodash";
 import { Fragment, useEffect, useState } from "react";
 import API from "../../api/API";
+import NewsBlock from "../../components/news/NewsBlock";
 import NewsBlockCulture from "../../components/news/NewsBlockCulture";
 import NewsBlockHeader from "../../components/news/NewsBlockHeader";
 import NewsBlockLifeStyle from "../../components/news/NewsBlockLifeStyle";
@@ -11,8 +12,8 @@ import { INews } from "../../interface/news";
 
 interface IHomePage {}
 
-const HomePage = ({}: IHomePage) => {
-  const [topStories, setTopStories] = useState<INews[]>([]);
+const SearchPage = ({}: IHomePage) => {
+  const [newsList, setNewList] = useState<INews[]>([]);
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const HomePage = ({}: IHomePage) => {
       section: "news",
     }).then((res: any) => {
       const newsList = res?.data?.response?.results ?? [];
-      setTopStories(newsList);
+      setNewList(newsList);
     });
   };
 
@@ -38,24 +39,14 @@ const HomePage = ({}: IHomePage) => {
         <NewsBlockHeader
           sortBy={sortBy}
           onChangeSort={(item) => setSortBy(item)}
-          title="Top stories"
+          title="Search result"
         />
-        <div className="home__top-story-grid home__top-story-banner">
-          {map(slice(topStories, 0, 5), (news, index) => (
-            <NewsCard news={news} className={"top-story-" + index} />
-          ))}
+        <div className="mt-5">
+          <NewsBlock newsList={newsList} />
         </div>
-        <div className="home__top-story-grid home__top-story-footer">
-          {map(slice(topStories, 5, 8), (news, index) => (
-            <NewsCard news={news} className={"top-story-" + (index + 5)} />
-          ))}
-        </div>
-        <NewsBlockSport className="home__news-block" />
-        <NewsBlockCulture className="home__news-block" />
-        <NewsBlockLifeStyle className="home__news-block" />
       </div>
     </Fragment>
   );
 };
 
-export default HomePage;
+export default SearchPage;
