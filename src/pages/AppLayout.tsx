@@ -1,13 +1,14 @@
 // react
 import Image from "next/image";
-import { Fragment, PropsWithChildren } from "react";
+import { Fragment, PropsWithChildren, useState } from "react";
 import AppLink from "../components/AppLink";
-import Icon from "../components/icon/Icon";
+import classnames from "classnames";
 
 export interface AppLayoutProps extends PropsWithChildren<{}> {}
 
 function AppLayout(props: AppLayoutProps) {
   const { children } = props;
+
   //general
 
   return (
@@ -19,7 +20,18 @@ function AppLayout(props: AppLayoutProps) {
               <img src="/images/logo.png" className="site-header__logo" />
             </AppLink>
             <div className="site-header__search-container flex-center p-1">
-              <Icon name="search" className="text-white" />
+              <input
+                id="site-search-input"
+                className={classnames("site-header__search-input")}
+                placeholder="Search all news"
+                autoFocus
+              />
+              <img
+                src="/images/search.svg"
+                onClick={() => {
+                  document.getElementById("site-search-input")?.focus();
+                }}
+              />
             </div>
           </div>
         </header>

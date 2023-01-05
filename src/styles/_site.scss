@@ -15,6 +15,17 @@
   height: $site-header-height;
 }
 
+.site-body {
+  flex-grow: 1;
+  padding: $spacer * 4 0;
+}
+
+.site-footer {
+  flex-shrink: 0;
+  background-color: $primary-color;
+  height: $site-footer-height;
+}
+
 .site-header__logo {
   height: $site-header-logo-height;
   object-fit: contain;
@@ -32,13 +43,22 @@
   min-width: 90px;
 }
 
-.site-body {
-  flex-grow: 1;
-  padding: $spacer * 4 0;
-}
+.site-header__search-input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  transition: width 0.5s;
+  width: 0px;
+  
+  &:focus {
+    width: 100px;
+  }
 
-.site-footer {
-  flex-shrink: 0;
-  background-color: $primary-color;
-  height: $site-footer-height;
+  &:focus-visible {
+    outline: none;
+  }
+  &::placeholder {
+    color: white;
+    opacity: 0.4;
+  }
 }
