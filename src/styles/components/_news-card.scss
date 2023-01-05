@@ -1,83 +1,23 @@
 @import "../variables";
 @import "../mixins/text";
+@import "../mixins/news-card";
 
 .news-card {
   position: relative;
   height: 100%;
-  flex: 1;
-}
-// news card layout small
-.news-card__layout-grid-sm {
-  .news-card__image {
-    display: none;
-    height: 0px !important;
-  }
-
-  .news-card__info {
-    position: relative;
-    min-height: 138px;
-    background-color: $primary-color !important;
-  }
-
-  .news-card__info-trail {
-    display: none;
-    height: 0px;
-  }
-
-  .news-card__info-title {
-    @include number-of-line(4);
-  }
-}
-
-// news card layout medium
-.news-card__layout-grid-md {
-  .news-card__image {
-    object-fit: cover;
-  }
-
-  .news-card__info {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-  }
-
-  .news-card__info-trail {
-    display: none;
-    height: 0px;
-  }
-
-  .news-card__info-title {
-    @include number-of-line(3);
-  }
-}
-
-// news card layout large
-.news-card__layout-grid-lg {
-  .news-card__image {
-    object-fit: cover;
-  }
-
-  .news-card__info {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-  }
-
-  .news-card__info-title {
-    @include number-of-line(2);
-  }
-
-  .news-card__info-trail {
-    @include number-of-line(3);
-  }
+  // flex: 1;
+  text-decoration: none;
 }
 
 .news-card__info {
   background-color: $primary-color-9;
   padding: $spacer-1;
+  margin: auto;
   height: 40%;
+}
+
+.news-card__image {
+  position: relative !important;
 }
 
 .news-card__info-title {
@@ -87,3 +27,18 @@
 .news-card__info-trail {
   color: white !important;
 }
+
+// news card layout small
+// .news-card__layout-grid-sm {
+//   @include news-card__layout-grid-sm();
+// }
+
+// // news card layout medium
+// .news-card__layout-grid-md {
+//   @include news-card__layout-grid-md();
+// }
+
+// // news card layout large
+// .news-card__layout-grid-lg {
+//   @include news-card__layout-grid-lg();
+// }

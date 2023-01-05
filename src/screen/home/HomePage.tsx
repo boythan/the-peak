@@ -11,19 +11,22 @@ import NewsCard from "../../components/news/NewsCard";
 interface IHomePage {}
 
 const HomePage = ({}: IHomePage) => {
-  const [newsList, setNewsList] = useState<INews[]>([]);
+  const [topStories, setTopStories] = useState<INews[]>([]);
 
   useEffect(() => {
     loadNews();
   }, []);
 
   const loadNews = () => {
-    API.search({ q: "debate", "show-fields": "thumbnail,trailText" }).then(
-      (res: any) => {
-        const newsList = res?.data?.response?.results ?? [];
-        setNewsList(newsList);
-      }
-    );
+    API.search({
+      q: "debate",
+      "show-fields": "thumbnail,trailText",
+      page: 1,
+      "page-size": 8,
+    }).then((res: any) => {
+      const newsList = res?.data?.response?.results ?? [];
+      setTopStories(newsList);
+    });
   };
 
   return (
@@ -42,21 +45,14 @@ const HomePage = ({}: IHomePage) => {
             />
           </div>
         </div>
-        <div className="wrapper" style={{ height: "347px" }}>
-          {map(slice(newsList, 0, 3), (news) => (
-            <NewsCard news={news} layout="grid-lg" />
+        <div className="home__top-story-banner">
+          {map(slice(topStories, 0, 5), (news, index) => (
+            <NewsCard news={news} className={"top-story-" + index} />
           ))}
         </div>
-
-        <div className="wrapper" style={{ height: "347px" }}>
-          {map(slice(newsList, 0, 3), (news) => (
-            <NewsCard news={news} layout="grid-md" />
-          ))}
-        </div>
-
-        <div className="wrapper">
-          {map(slice(newsList, 0, 3), (news) => (
-            <NewsCard news={news} layout="grid-sm" />
+        <div className="home__top-story-footer">
+          {map(slice(topStories, 5, 8), (news, index) => (
+            <NewsCard news={news} className={"top-story-" + (index + 5)} />
           ))}
         </div>
       </div>

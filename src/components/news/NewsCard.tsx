@@ -10,15 +10,17 @@ export type NewsCardLayout = "grid-sm" | "grid-md" | "grid-lg";
 
 export interface NewsCardProps {
   news: INews;
+  className?: any;
   layout?: NewsCardLayout;
 }
 
 function NewsCard(props: NewsCardProps) {
-  const { news, layout = "grid-md" } = props;
+  const { news, layout = "grid-md", className } = props;
   const { fields, id, webTitle } = news;
   const containerClasses = classnames(
     "news-card",
-    `news-card__layout-${layout}`
+    // `news-card__layout-${layout}`,
+    className
   );
   const imageClass = classnames("news-card__image");
 

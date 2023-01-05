@@ -1,0 +1,66 @@
+@import "./text";
+@import "../variables";
+
+@mixin news-card__layout-grid-sm() {
+  background-color: $primary-color !important;
+  .news-card__image {
+    display: none;
+    height: 0px !important;
+  }
+
+  .news-card__info {
+    position: relative;
+  }
+
+  .news-card__info-trail {
+    display: none;
+    height: 0px;
+  }
+
+  .news-card__info-title {
+    @include number-of-line(4);
+  }
+}
+
+@mixin news-card__layout-grid-md() {
+  .news-card__image {
+    object-fit: cover;
+  }
+
+  .news-card__info {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+  }
+
+  .news-card__info-trail {
+    display: none;
+    height: 0px;
+  }
+
+  .news-card__info-title {
+    @include number-of-line(3);
+  }
+}
+
+@mixin news-card__layout-grid-lg() {
+  .news-card__image {
+    object-fit: cover;
+  }
+
+  .news-card__info {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+  }
+
+  .news-card__info-title {
+    @include number-of-line(2);
+  }
+
+  .news-card__info-trail {
+    @include number-of-line(3);
+  }
+}

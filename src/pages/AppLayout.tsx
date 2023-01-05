@@ -24,7 +24,7 @@ function AppLayout(props: AppLayoutProps) {
           </div>
         </header>
 
-        <div className="site-body body">{children}</div>
+        <div className="site-body">{children}</div>
 
         <footer className="site-footer" />
       </div>

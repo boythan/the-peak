@@ -35,6 +35,10 @@ a:hover {
   text-decoration: none;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 body,
 .body {
   height: 100%;
@@ -44,7 +48,6 @@ body,
   line-height: $body-line-height;
   color: $body-font-color;
   backface-visibility: hidden;
-  overflow-y: scroll;
   margin: initial;
   background-color: white;
 }

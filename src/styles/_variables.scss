@@ -141,12 +141,18 @@ $menu-shadow: 0 1px 15px rgba(#000, 0.25) !default;
 $menu-item-hover-bg: rgba(#000, 0.05) !default;
 
 // ----------------------------------------
-// -- Site Header
+// -- Site
 // ----------------------------------------
-
 $site-header-height: 126px !default;
 $site-footer-height: 243px !default;
 $site-header-logo-height: 56px !default;
+
+// ----------------------------------------
+// -- Home
+// ----------------------------------------
+$home-grid-card-gap: 30px !default;
+$home-top-story-banner-height: 423px !default;
+$home-top-story-footer-height: 347px !default;
 
 // ----------------------------------------
 // -- Mobile UI
