@@ -165,66 +165,61 @@ h6,
 // ----------------------------------------
 // -- Spacing
 // ----------------------------------------
-// margin
-.m-0 {
-  margin: 0 !important;
-}
 
-.m-1 {
-  margin: $spacer-1 !important;
-}
+@for $i from 0 through 5 {
+  //margin
+  .m-#{$i} {
+    margin: $spacer * $i !important;
+  }
+  .ml-#{$i} {
+    margin-left: $spacer * $i !important;
+  }
+  .mr-#{$i} {
+    margin-right: $spacer * $i !important;
+  }
 
-.m-2 {
-  margin: $spacer-2 !important;
-}
+  .mt-#{$i} {
+    margin-top: $spacer * $i !important;
+  }
 
-.m-3 {
-  margin: $spacer-3 !important;
-}
-//margin right
-.ml-0 {
-  margin-left: 0 !important;
-}
+  .mb-#{$i} {
+    margin-bottom: $spacer * $i !important;
+  }
 
-.ml-1 {
-  margin-left: $spacer-1 !important;
-}
+  .mx-#{$i} {
+    margin: 0px $spacer * $i !important;
+  }
 
-.ml-2 {
-  margin-left: $spacer-2 !important;
-}
+  .my-#{$i} {
+    margin: $spacer * $i 0px !important;
+  }
 
-.ml-3 {
-  margin-left: $spacer-3 !important;
-}
+  //padding
+  .p-#{$i} {
+    padding: $spacer * $i !important;
+  }
+  .pl-#{$i} {
+    padding-left: $spacer * $i !important;
+  }
+  .pr-#{$i} {
+    padding-right: $spacer * $i !important;
+  }
 
-//padding
-.p-0 {
-  padding: 0 !important;
-}
+  .pt-#{$i} {
+    padding-top: $spacer * $i !important;
+  }
 
-.p-1 {
-  padding: $spacer-1 !important;
-}
+  .pb-#{$i} {
+    padding-bottom: $spacer * $i !important;
+  }
 
-.p-2 {
-  padding: $spacer-3 !important;
-}
+  .px-#{$i} {
+    padding: 0px $spacer * $i !important;
+  }
 
-.p-3 {
-  padding: $spacer-3 !important;
-}
-
-// padding vertical
-.py-1 {
-  padding-top: $spacer-1 !important;
-  padding-bottom: $spacer-1 !important;
-}
-
-// padding horizontal
-.px-2 {
-  padding-left: $spacer-2 !important;
-  padding-right: $spacer-2 !important;
+  .py-#{$i} {
+    padding: $spacer * $i 0px !important;
+  }
 }
 
 // ----------------------------------------

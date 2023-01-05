@@ -1,0 +1,22 @@
+@import "../mixins/news-card";
+@import "../variables";
+
+.news-block__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.news-block__news-item {
+  width: calc(100% / 3 - $home-grid-card-gap * 2 / 3);
+  margin-right: $home-grid-card-gap;
+  margin-top: $home-grid-card-gap;
+  min-height: $news-card-height;
+  @include news-card__layout-grid-md();
+  .news-card__image {
+    position: absolute !important;
+  }
+}
+
+.news-block__news-item:nth-child(3n + 0) {
+  margin-right: 0px !important;
+}

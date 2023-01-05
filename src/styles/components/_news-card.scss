@@ -5,13 +5,12 @@
 .news-card {
   position: relative;
   height: 100%;
-  // flex: 1;
   text-decoration: none;
 }
 
 .news-card__info {
   background-color: $primary-color-9;
-  padding: $spacer-1;
+  padding: $spacer * 2;
   margin: auto;
   height: 40%;
 }
@@ -27,18 +26,3 @@
 .news-card__info-trail {
   color: white !important;
 }
-
-// news card layout small
-// .news-card__layout-grid-sm {
-//   @include news-card__layout-grid-sm();
-// }
-
-// // news card layout medium
-// .news-card__layout-grid-md {
-//   @include news-card__layout-grid-md();
-// }
-
-// // news card layout large
-// .news-card__layout-grid-lg {
-//   @include news-card__layout-grid-lg();
-// }

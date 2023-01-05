@@ -10,9 +10,7 @@ $text-light: rgb(255, 255, 255) !default;
 // ----------------------------------------
 // -- Spacing
 // ----------------------------------------
-$spacer-1: 9px !default;
-$spacer-2: 12px !default;
-$spacer-3: 16px !default;
+$spacer: 4px !default;
 
 // ----------------------------------------
 // -- Font weight
@@ -139,6 +137,9 @@ $menu-bg: #ffffff !default;
 $menu-min-width: 150px !default;
 $menu-shadow: 0 1px 15px rgba(#000, 0.25) !default;
 $menu-item-hover-bg: rgba(#000, 0.05) !default;
+
+//news card
+$news-card-height: 350px;
 
 // ----------------------------------------
 // -- Site

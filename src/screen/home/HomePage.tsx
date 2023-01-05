@@ -7,6 +7,7 @@ import API from "../../api/API";
 import { map, slice } from "lodash";
 import { INews } from "../../interface/news";
 import NewsCard from "../../components/news/NewsCard";
+import NewsBlockSport from "../../components/news/NewsBlockSport";
 
 interface IHomePage {}
 
@@ -45,16 +46,17 @@ const HomePage = ({}: IHomePage) => {
             />
           </div>
         </div>
-        <div className="home__top-story-banner">
+        <div className="home__top-story-grid home__top-story-banner">
           {map(slice(topStories, 0, 5), (news, index) => (
             <NewsCard news={news} className={"top-story-" + index} />
           ))}
         </div>
-        <div className="home__top-story-footer">
+        <div className="home__top-story-grid home__top-story-footer">
           {map(slice(topStories, 5, 8), (news, index) => (
             <NewsCard news={news} className={"top-story-" + (index + 5)} />
           ))}
         </div>
+        <NewsBlockSport className="home__news-sport-block" />
       </div>
     </Fragment>
   );

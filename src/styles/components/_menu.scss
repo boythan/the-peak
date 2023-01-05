@@ -5,7 +5,7 @@
   background: $menu-bg;
   box-shadow: $menu-shadow;
   list-style: none;
-  padding: $spacer-1 0;
+  padding: $spacer * 2 0;
   min-width: $menu-min-width;
   > li {
     position: relative;
@@ -17,8 +17,8 @@
     width: 100%;
     font-weight: inherit;
     display: block;
-    padding-top: $spacer-1;
-    padding-bottom: $spacer-1;
+    padding-top: $spacer * 2;
+    padding-bottom: $spacer * 2;
     color: inherit;
 
     &:focus {
