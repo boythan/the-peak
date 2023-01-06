@@ -5,7 +5,7 @@ import NewsBlockHeader from "../../components/news/NewsBlockHeader";
 import { NEWS_HOME_SORT } from "../../constant/news";
 import { INews } from "../../interface/news";
 
-const SearchPage = () => {
+const BookmarkPage = () => {
   const [newsList, setNewList] = useState<INews[]>([]);
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
 
@@ -32,7 +32,8 @@ const SearchPage = () => {
         <NewsBlockHeader
           sortBy={sortBy}
           onChangeSort={(item) => setSortBy(item)}
-          title="Search result"
+          title="All bookmark"
+          hideBookmark
         />
         <div className="mt-5">
           <NewsBlock newsList={newsList} />
@@ -42,4 +43,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default BookmarkPage;

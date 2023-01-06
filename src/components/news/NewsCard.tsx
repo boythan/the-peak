@@ -1,8 +1,6 @@
 // react
 // third-party
 import classnames from "classnames";
-import { memo } from "react";
-import Image from "next/image";
 import { INews } from "../../interface/news";
 import AppLink from "../AppLink";
 
@@ -19,7 +17,10 @@ function NewsCard(props: NewsCardProps) {
 
   return (
     <AppLink href={"/home"} className={containerClasses}>
-      <img className={imageClass} src={fields?.thumbnail} />
+      <img
+        className={imageClass}
+        src={fields?.thumbnail ?? "/images/logo.png"}
+      />
       <div className="news-card__info">
         <h6 className="news-card__info-title">{webTitle}</h6>
         <text
