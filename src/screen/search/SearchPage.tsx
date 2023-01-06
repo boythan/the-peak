@@ -1,24 +1,37 @@
-import { throttle } from "lodash";
-import { Fragment, useEffect, useRef, useState } from "react";
-import { StringParam, useQueryParam, withDefault } from "use-query-params";
+import { isEmpty, throttle } from "lodash";
+import { Fragment, memo, useEffect, useRef, useState } from "react";
 import API from "../../api/API";
 import NewsBlock from "../../components/news/NewsBlock";
 import NewsBlockHeader from "../../components/news/NewsBlockHeader";
 import { NEWS_HOME_SORT } from "../../constant/news";
 import { INews } from "../../interface/news";
 
-const SearchPage = () => {
-  const [search] = useQueryParam("", withDefault(StringParam, ""));
+interface ISearchPageProps {
+  search: string | null;
+}
 
-  const [newsList, setNewList] = useState<INews[]>([]);
+interface ISearchState {
+  data: INews[];
+  hasMoreData: boolean;
+}
+
+const InitSearchState = {
+  data: [],
+  hasMoreData: true,
+};
+
+const SearchPage = ({ search }: ISearchPageProps) => {
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
   const [loadingMore, setLoadingMore] = useState(false);
   const pageIndex = useRef(1);
 
+  const [searchState, setSearchState] = useState<ISearchState>(InitSearchState);
+
   useEffect(() => {
     pageIndex.current = 1;
+    setSearchState(InitSearchState);
     loadNews();
-  }, [sortBy]);
+  }, [sortBy?.id, search]);
 
   useEffect(() => {
     loadingMore && loadNews();
@@ -30,11 +43,9 @@ const SearchPage = () => {
         window.scrollY + document.body.clientHeight ===
         document.body.scrollHeight
       ) {
-        if (!loadingMore) {
-          onLoadMore();
-        }
+        onLoadMore();
       } else {
-        setLoadingMore(false);
+        loadingMore && setLoadingMore(false);
       }
     };
   }, []);
@@ -45,6 +56,9 @@ const SearchPage = () => {
   }, 400);
 
   const loadNews = () => {
+    console.log("searchState?.hasMoreData", searchState?.hasMoreData);
+    if (isEmpty(search) || loadingMore || !searchState?.hasMoreData) return;
+
     API.search({
       q: search,
       "show-fields": "thumbnail,trailText",
@@ -54,8 +68,13 @@ const SearchPage = () => {
       section: "news",
     }).then((res: any) => {
       const newsListNew = res?.data?.response?.results ?? [];
-      const result = [...newsList, ...newsListNew];
-      setNewList([...result]);
+      const total = res?.data?.response?.total ?? 0;
+      const result = [...searchState.data, ...newsListNew];
+
+      setSearchState({
+        data: result,
+        hasMoreData: result?.length < total,
+      });
     });
   };
 
@@ -68,8 +87,8 @@ const SearchPage = () => {
           title="Search result"
         />
         <div className="mt-5">
-          <NewsBlock newsList={newsList} />
-          {loadingMore && (
+          <NewsBlock newsList={searchState?.data} />
+          {loadingMore && searchState.hasMoreData && (
             <div className="flex-center mt-3">
               <div className="loader" />
             </div>
@@ -80,4 +99,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default memo(SearchPage);

@@ -1,15 +1,21 @@
 // react
 import classnames from "classnames";
-import { Fragment, PropsWithChildren } from "react";
+import { debounce, isEmpty } from "lodash";
+import React, { Fragment, PropsWithChildren, useState } from "react";
 import { StringParam, useQueryParam, withDefault } from "use-query-params";
 import AppLink from "../components/AppLink";
+import SearchPage from "../screen/search/SearchPage";
 
 export interface AppLayoutProps extends PropsWithChildren<{}> {}
 
 function AppLayout(props: AppLayoutProps) {
   const { children } = props;
-  const [search, setSearch] = useQueryParam("", withDefault(StringParam, ""));
-  //general
+  // const [search, setSearch] = useQueryParam("", withDefault(StringParam, ""));
+  const [search, setSearch] = useState<string>("");
+
+  const onChangeSearch = debounce((event) => {
+    setSearch(event?.target?.value);
+  }, 500);
 
   return (
     <Fragment>
@@ -21,12 +27,13 @@ function AppLayout(props: AppLayoutProps) {
             </AppLink>
             <div className="site-header__search-container flex-center p-1">
               <input
-                value={search}
                 id="site-search-input"
-                className={classnames("site-header__search-input")}
+                className={classnames("site-header__search-input", {
+                  "site-header__search-input-focus": !isEmpty(search),
+                })}
                 placeholder="Search all news"
                 autoFocus
-                onChange={(event) => setSearch(event?.target?.value)}
+                onChange={(event) => onChangeSearch(event)}
               />
               <img
                 src="/images/search.svg"
@@ -37,8 +44,12 @@ function AppLayout(props: AppLayoutProps) {
             </div>
           </div>
         </header>
-
-        <div className="site-body">{children}</div>
+        <React.StrictMode>
+          <div className="site-body">
+            {isEmpty(search) && children}
+            {!isEmpty(search) && <SearchPage search={search} />}
+          </div>
+        </React.StrictMode>
 
         <footer className="site-footer" />
       </div>

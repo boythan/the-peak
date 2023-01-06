@@ -49,8 +49,9 @@
   color: white;
   transition: width 0.5s;
   width: 0px;
-  
-  &:focus {
+
+  &:focus,
+  &-focus {
     width: 100px;
   }
 

@@ -1,9 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
-import API from "../../api/API";
 import NewsBlock from "../../components/news/NewsBlock";
 import NewsBlockHeader from "../../components/news/NewsBlockHeader";
 import { NEWS_HOME_SORT } from "../../constant/news";
 import { INews } from "../../interface/news";
+import BookmarkManager from "../../local-storage/BookmarkManager";
 
 const BookmarkPage = () => {
   const [newsList, setNewList] = useState<INews[]>([]);
@@ -14,16 +14,8 @@ const BookmarkPage = () => {
   }, [sortBy]);
 
   const loadNews = () => {
-    API.search({
-      "show-fields": "thumbnail,trailText",
-      page: 1,
-      "page-size": 8,
-      "order-by": sortBy?.id,
-      section: "news",
-    }).then((res: any) => {
-      const newsList = res?.data?.response?.results ?? [];
-      setNewList(newsList);
-    });
+    const allBookmark = BookmarkManager.getAll();
+    console.log("allBookmark", allBookmark);
   };
 
   return (
