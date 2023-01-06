@@ -1,4 +1,4 @@
-import _, { filter } from "lodash";
+import _, { filter, includes, map } from "lodash";
 import { INews } from "../interface/news";
 
 const BOOKMARK_KEY: string = "the-peak-bookmark";
@@ -32,6 +32,13 @@ const BookmarkManager = {
     const removedBookmark = filter(allBookmark, (item) => item.id !== id);
     BookmarkManager.save(removedBookmark);
     return removedBookmark;
+  },
+
+  isBookmarked: (id: string) => {
+    const allBookmark = BookmarkManager.getAll() ?? [];
+    console.log("allBookmark", allBookmark);
+    const bookmarkIds = map(allBookmark, (item) => item.id);
+    return includes(bookmarkIds, id);
   },
 };
 

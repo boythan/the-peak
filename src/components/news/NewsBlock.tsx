@@ -10,6 +10,9 @@ interface INewsBlock {
 const NewsBlock = ({ newsList }: INewsBlock) => {
   return (
     <div className="news-block__container">
+      {!newsList?.length && (
+        <div className="w-100 flex-center p-5 h6">No result</div>
+      )}
       {map(newsList, (news) => (
         <NewsCard
           news={news}

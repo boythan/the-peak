@@ -1,6 +1,8 @@
 export interface INewsField {
   thumbnail: string;
   trailText: string;
+  headline: string;
+  body: string;
 }
 
 export interface INews {

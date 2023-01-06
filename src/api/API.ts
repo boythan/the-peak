@@ -21,6 +21,10 @@ const API = {
   search: (params: any) => {
     return API.instance.get(API_SEARCH, { params });
   },
+
+  detail: (id: string, params?: any) => {
+    return API.instance.get(`${id}`, { params });
+  },
 };
 
 export default API;

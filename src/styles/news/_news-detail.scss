@@ -1,0 +1,18 @@
+.news-detail__content-container {
+  flex-grow: 3;
+}
+
+.news-detail__image-container {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+}
+
+.news-detail__image {
+  width: 100%;
+  object-fit: contain;
+}
+
+.news-detail__content-body {
+  border-top: 1px solid rgba(151, 151, 151, 0.2);
+}

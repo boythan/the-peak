@@ -1,20 +1,26 @@
 import classnames from "classnames";
-import Icon from "../icon/Icon";
+import { toUpper } from "lodash";
 
 interface IBookmarkButton {
   className?: any;
+  content?: any;
+  onClick: any;
 }
 
-const BookmarkButton = ({ className }: IBookmarkButton) => {
+const BookmarkButton = ({
+  content = "view bookmark",
+  onClick,
+  className,
+}: IBookmarkButton) => {
   const classNameContainer = classnames(
     "flex-center bg-primary py-1 px-2 border-radius-1",
     className
   );
   return (
-    <div className={classNameContainer}>
-      <Icon name="bookmark" className="text-white" />
-      <text className="text-white">VIEW BOOKMARK</text>
-    </div>
+    <button className={classNameContainer} onClick={onClick}>
+      <img src="/images/bookmark-on.svg" className="mr-2" />
+      <text className="text-white">{toUpper(content)}</text>
+    </button>
   );
 };
 

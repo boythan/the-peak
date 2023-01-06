@@ -22,7 +22,7 @@ function NewsCard(props: NewsCardProps) {
   const imageClass = classnames("news-card__image");
 
   return (
-    <AppLink href={"/home"} className={containerClasses}>
+    <AppLink href={`/news/${news?.id}`} className={containerClasses}>
       <img
         className={imageClass}
         src={fields?.thumbnail ?? "/images/logo.png"}

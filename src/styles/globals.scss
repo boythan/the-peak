@@ -151,6 +151,14 @@ h6,
 }
 
 // ----------------------------------------
+// -- Button
+// ----------------------------------------
+
+button {
+  border: none;
+}
+
+// ----------------------------------------
 // -- Width/Height
 // ----------------------------------------
 
@@ -163,7 +171,7 @@ h6,
 }
 
 .w-100 {
-  height: 100%;
+  width: 100%;
 }
 
 .width-100 {
@@ -195,11 +203,13 @@ h6,
   }
 
   .mx-#{$i} {
-    margin: 0px $spacer * $i !important;
+    margin-left: $spacer * $i !important;
+    margin-right: $spacer * $i !important;
   }
 
   .my-#{$i} {
-    margin: $spacer * $i 0px !important;
+    margin-top: $spacer * $i !important;
+    margin-bottom: $spacer * $i !important;
   }
 
   //padding
@@ -222,11 +232,13 @@ h6,
   }
 
   .px-#{$i} {
-    padding: 0px $spacer * $i !important;
+    padding-left: $spacer * $i !important;
+    padding-right: $spacer * $i !important;
   }
 
   .py-#{$i} {
-    padding: $spacer * $i 0px !important;
+    padding-top: $spacer * $i !important;
+    padding-bottom: $spacer * $i !important;
   }
 }
 

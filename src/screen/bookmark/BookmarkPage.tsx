@@ -15,7 +15,7 @@ const BookmarkPage = () => {
 
   const loadNews = () => {
     const allBookmark = BookmarkManager.getAll();
-    console.log("allBookmark", allBookmark);
+    setNewList(allBookmark);
   };
 
   return (
