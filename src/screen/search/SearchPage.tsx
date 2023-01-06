@@ -1,11 +1,11 @@
 import { throttle } from "lodash";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { StringParam, useQueryParam, withDefault } from "use-query-params";
 import API from "../../api/API";
 import NewsBlock from "../../components/news/NewsBlock";
 import NewsBlockHeader from "../../components/news/NewsBlockHeader";
 import { NEWS_HOME_SORT } from "../../constant/news";
 import { INews } from "../../interface/news";
-import { StringParam, useQueryParam, withDefault } from "use-query-params";
 
 const SearchPage = () => {
   const [search] = useQueryParam("", withDefault(StringParam, ""));

@@ -7,14 +7,20 @@ interface INewsBlockHeader {
   title: any;
   sortBy: any;
   onChangeSort: any;
+  hideBookmark?: boolean;
 }
 
-const NewsBlockHeader = ({ title, sortBy, onChangeSort }: INewsBlockHeader) => {
+const NewsBlockHeader = ({
+  title,
+  sortBy,
+  onChangeSort,
+  hideBookmark,
+}: INewsBlockHeader) => {
   return (
     <div className="home__title-container">
       <h3>{title}</h3>
       <div className="d-flex">
-        <BookmarkButton />
+        {!hideBookmark && <BookmarkButton />}
         <Dropdown
           label={sortBy?.label}
           items={NEWS_HOME_SORT}
