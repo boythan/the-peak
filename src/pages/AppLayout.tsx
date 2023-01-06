@@ -1,9 +1,8 @@
 // react
-import Image from "next/image";
-import { Fragment, PropsWithChildren, useState } from "react";
-import AppLink from "../components/AppLink";
 import classnames from "classnames";
-import { useQueryParam, StringParam, withDefault } from "use-query-params";
+import { Fragment, PropsWithChildren } from "react";
+import { StringParam, useQueryParam, withDefault } from "use-query-params";
+import AppLink from "../components/AppLink";
 
 export interface AppLayoutProps extends PropsWithChildren<{}> {}
 

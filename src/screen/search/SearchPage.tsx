@@ -1,48 +1,79 @@
-import { map, slice } from "lodash";
-import { Fragment, useEffect, useState } from "react";
+import { throttle } from "lodash";
+import { Fragment, useEffect, useRef, useState } from "react";
 import API from "../../api/API";
 import NewsBlock from "../../components/news/NewsBlock";
-import NewsBlockCulture from "../../components/news/NewsBlockCulture";
 import NewsBlockHeader from "../../components/news/NewsBlockHeader";
-import NewsBlockLifeStyle from "../../components/news/NewsBlockLifeStyle";
-import NewsBlockSport from "../../components/news/NewsBlockSport";
-import NewsCard from "../../components/news/NewsCard";
 import { NEWS_HOME_SORT } from "../../constant/news";
 import { INews } from "../../interface/news";
+import { StringParam, useQueryParam, withDefault } from "use-query-params";
 
-interface IHomePage {}
+const SearchPage = () => {
+  const [search] = useQueryParam("", withDefault(StringParam, ""));
 
-const SearchPage = ({}: IHomePage) => {
   const [newsList, setNewList] = useState<INews[]>([]);
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const pageIndex = useRef(1);
 
   useEffect(() => {
+    pageIndex.current = 1;
     loadNews();
   }, [sortBy]);
 
+  useEffect(() => {
+    loadingMore && loadNews();
+  }, [loadingMore]);
+
+  useEffect(() => {
+    window.onscroll = function (ev) {
+      if (
+        window.scrollY + document.body.clientHeight ===
+        document.body.scrollHeight
+      ) {
+        if (!loadingMore) {
+          onLoadMore();
+        }
+      } else {
+        setLoadingMore(false);
+      }
+    };
+  }, []);
+
+  const onLoadMore = throttle(() => {
+    setLoadingMore(true);
+    pageIndex.current += 1;
+  }, 400);
+
   const loadNews = () => {
     API.search({
+      q: search,
       "show-fields": "thumbnail,trailText",
-      page: 1,
-      "page-size": 8,
+      page: pageIndex.current,
+      "page-size": 15,
       "order-by": sortBy?.id,
       section: "news",
     }).then((res: any) => {
-      const newsList = res?.data?.response?.results ?? [];
-      setNewList(newsList);
+      const newsListNew = res?.data?.response?.results ?? [];
+      const result = [...newsList, ...newsListNew];
+      setNewList([...result]);
     });
   };
 
   return (
     <Fragment>
-      <div className="container">
+      <div className="container" id="search-container">
         <NewsBlockHeader
           sortBy={sortBy}
-          onChangeSort={(item) => setSortBy(item)}
+          onChangeSort={setSortBy}
           title="Search result"
         />
         <div className="mt-5">
           <NewsBlock newsList={newsList} />
+          {loadingMore && (
+            <div className="flex-center mt-3">
+              <div className="loader" />
+            </div>
+          )}
         </div>
       </div>
     </Fragment>

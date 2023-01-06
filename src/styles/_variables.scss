@@ -152,6 +152,11 @@ $menu-min-width: 150px !default;
 $menu-shadow: 0 1px 15px rgba(#000, 0.25) !default;
 $menu-item-hover-bg: rgba(#000, 0.05) !default;
 
+//loader
+$loader-size-sm: 20px !default;
+$loader-size-md: 40px !default;
+$loader-size-lg: 60px !default;
+
 //news card
 $news-card-height: 350px !default;
 $news-card-width: calc(100% / 3 - $home-grid-card-gap * 2 / 3) !default;
