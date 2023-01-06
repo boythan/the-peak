@@ -43,7 +43,7 @@ const SearchPage = ({ search }: ISearchPageProps) => {
         window.scrollY + document.body.clientHeight ===
         document.body.scrollHeight
       ) {
-        onLoadMore();
+        !loadingMore && onLoadMore();
       } else {
         loadingMore && setLoadingMore(false);
       }
@@ -56,8 +56,7 @@ const SearchPage = ({ search }: ISearchPageProps) => {
   }, 400);
 
   const loadNews = () => {
-    console.log("searchState?.hasMoreData", searchState?.hasMoreData);
-    if (isEmpty(search) || loadingMore || !searchState?.hasMoreData) return;
+    if (isEmpty(search) || !searchState?.hasMoreData) return;
 
     API.search({
       q: search,
@@ -70,7 +69,7 @@ const SearchPage = ({ search }: ISearchPageProps) => {
       const newsListNew = res?.data?.response?.results ?? [];
       const total = res?.data?.response?.total ?? 0;
       const result = [...searchState.data, ...newsListNew];
-
+      setLoadingMore(false);
       setSearchState({
         data: result,
         hasMoreData: result?.length < total,

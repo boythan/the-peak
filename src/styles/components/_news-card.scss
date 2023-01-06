@@ -6,6 +6,21 @@
   position: relative;
   height: 100%;
   text-decoration: none;
+
+  &__place-holder {
+    background-color: $primary-color;
+    .news-card__image {
+      object-fit: contain !important;
+      height: 40%;
+      width: -webkit-fill-available;
+      margin: 10%;
+      padding: $spacer;
+    }
+
+    .news-card__info {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
 }
 
 .news-card__info {

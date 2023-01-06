@@ -40,14 +40,13 @@
 
 .home__top-story-banner {
   height: $home-top-story-banner-height;
-  // grid-template-columns: 25% 25% 25% 25%;
-  // grid-template-rows: 105px 105px 105px 105px;
+  grid-template-columns: $home-grid-card-width $home-grid-card-width $home-grid-card-width $home-grid-card-width;
 
   grid-template-areas:
     "top-story-0 top-story-0 top-story-1 top-story-2"
     "top-story-0 top-story-0 top-story-1 top-story-2"
     "top-story-0 top-story-0 top-story-1 top-story-2"
-    "top-story-0 top-story-0 top-story-3 top-story-4"
+    "top-story-0 top-story-0 top-story-1 top-story-2"
     "top-story-0 top-story-0 top-story-3 top-story-4";
 }
 

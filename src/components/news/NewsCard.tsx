@@ -12,7 +12,13 @@ export interface NewsCardProps {
 function NewsCard(props: NewsCardProps) {
   const { news, className } = props;
   const { fields, id, webTitle } = news;
-  const containerClasses = classnames("news-card", className);
+  const containerClasses = classnames(
+    "news-card",
+    {
+      "news-card__place-holder": !fields?.thumbnail,
+    },
+    className
+  );
   const imageClass = classnames("news-card__image");
 
   return (

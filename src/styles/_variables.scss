@@ -129,6 +129,7 @@ $site-header-logo-height: 56px !default;
 // -- Home
 // ----------------------------------------
 $home-grid-card-gap: 30px !default;
+$home-grid-card-width: calc((100% - $home-grid-card-gap * 3) / 4);
 $home-top-story-banner-height: 423px !default;
 $home-top-story-footer-height: 347px !default;
 
