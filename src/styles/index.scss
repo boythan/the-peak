@@ -2,6 +2,7 @@
 // Home
 // ---------------------------------------- */
 @import "home/home";
+@import "search/search";
 
 /* ----------------------------------------
 // Components
@@ -11,6 +12,7 @@
 @import "./components/icon";
 @import "./components/news-card";
 @import "./components/news-block";
+@import "./components/loader";
 
 // common
 @import "./variables";

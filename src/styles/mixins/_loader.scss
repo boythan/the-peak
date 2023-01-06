@@ -1,0 +1,10 @@
+@import "../variables";
+
+@mixin loader-sizing($size) {
+  border: calc($size / 4) solid #f3f3f3;
+  border-radius: 50%;
+  border-top: calc($size / 4) solid $primary-color;
+  width: $size;
+  height: $size;
+  animation: spin 2s linear infinite;
+}

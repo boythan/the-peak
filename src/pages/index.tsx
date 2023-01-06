@@ -2,15 +2,18 @@ import HomePage from "../screen/home/HomePage";
 import { useQueryParam, StringParam, withDefault } from "use-query-params";
 import { isEmpty } from "lodash";
 import SearchPage from "../screen/search/SearchPage";
+import { memo } from "react";
 
-export default function App() {
-  const [search] = useQueryParam("", withDefault(StringParam, ""));
+function App() {
+  // const [search] = useQueryParam("", withDefault(StringParam, ""));
 
-  console.log("search", search);
+  console.log("render app homepage");
 
-  if (!isEmpty(search)) {
-    return <SearchPage />;
-  }
+  // if (!isEmpty(search)) {
+  //   return <SearchPage />;
+  // }
 
   return <HomePage />;
 }
+
+export default memo(App);
