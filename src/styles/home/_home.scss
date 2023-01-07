@@ -1,27 +1,5 @@
 @import "../mixins/news-card";
-
-.home__title-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.top-story-0,
-.top-story-5,
-.top-story-6,
-.top-story-7 {
-  @include news-card__layout-grid-lg();
-}
-
-.top-story-1,
-.top-story-2 {
-  @include news-card__layout-grid-md();
-}
-
-.top-story-3,
-.top-story-4 {
-  @include news-card__layout-grid-sm();
-}
+@import "../mixins/responsive";
 
 // assign grid area
 @for $i from 0 through 7 {
@@ -59,4 +37,50 @@
 
 .home__news-block {
   margin-top: 50px;
+}
+
+@media (min-width: breakpoint(md-start)) {
+  .top-story-0,
+  .top-story-5,
+  .top-story-6,
+  .top-story-7 {
+    @include news-card__layout-grid-lg();
+  }
+
+  .top-story-1,
+  .top-story-2 {
+    @include news-card__layout-grid-md();
+  }
+
+  .top-story-3,
+  .top-story-4 {
+    @include news-card__layout-grid-sm();
+  }
+}
+
+@media (max-width: breakpoint(sm-end)) {
+  @for $i from 0 through 7 {
+    .top-story-#{$i} {
+      @include news-card__layout-grid-lg();
+    }
+  }
+
+  .home__top-story-banner {
+    height: auto;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "top-story-0 "
+      "top-story-1 "
+      "top-story-2 "
+      "top-story-3 "
+      "top-story-4";
+  }
+  .home__top-story-footer {
+    height: auto;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "top-story-5 "
+      "top-story-6 "
+      "top-story-7 ";
+  }
 }

@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import React from "react";
 import { NEWS_HOME_SORT } from "../../constant/news";
 import BookmarkButton from "../bookmark/BookmarkButton";
 import Dropdown from "../dropdown/Dropdown";
@@ -20,11 +19,15 @@ const NewsBlockHeader = ({
   const router = useRouter();
 
   return (
-    <div className="home__title-container">
+    <div className="news-block__header">
       <h3>{title}</h3>
       <div className="d-flex">
         {!hideBookmark && (
-          <BookmarkButton onClick={() => router.replace("/bookmark")} />
+          <BookmarkButton
+            onClick={() => {
+              router.replace("/bookmark");
+            }}
+          />
         )}
         <Dropdown
           label={sortBy?.label}

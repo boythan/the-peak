@@ -32,7 +32,13 @@ const NewsDetail = ({ news }: INewsDetail) => {
 
   return (
     <div className="container">
-      <div className="d-flex">
+      <div className="news-detail__container">
+        <div
+          className="news-detail__image-container"
+          hidden={!fields?.thumbnail}
+        >
+          <img src={fields?.thumbnail} className="news-detail__image" />
+        </div>
         <div className="news-detail__content-container">
           {!isBookmark && (
             <BookmarkButton onClick={addBookmark} content="add bookmark" />
@@ -52,12 +58,6 @@ const NewsDetail = ({ news }: INewsDetail) => {
             dangerouslySetInnerHTML={{ __html: fields?.body ?? "" }}
             className="news-detail__content-body mt-4"
           />
-        </div>
-        <div
-          className="news-detail__image-container pl-3"
-          hidden={!fields?.thumbnail}
-        >
-          <img src={fields?.thumbnail} className="news-detail__image" />
         </div>
       </div>
     </div>

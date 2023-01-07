@@ -1,7 +1,7 @@
 // react
 import classnames from "classnames";
 import { debounce, isArray, isEmpty } from "lodash";
-import React, { Fragment, PropsWithChildren, useState } from "react";
+import { Fragment, PropsWithChildren, useState } from "react";
 import AppLink from "../components/AppLink";
 import AppLayoutContext from "../context/app";
 import SearchPage from "../screen/search/SearchPage";
@@ -56,7 +56,7 @@ function AppLayout(props: AppLayoutProps) {
   };
 
   return (
-    <AppLayoutContext.Provider value={{ fecthNews, setSearch }}>
+    <AppLayoutContext.Provider value={{ fecthNews }}>
       <Fragment>
         <div className="site">
           <header className="site-header">
@@ -73,6 +73,7 @@ function AppLayout(props: AppLayoutProps) {
                   placeholder="Search all news"
                   autoFocus
                   onChange={(event) => onChangeSearch(event)}
+                  onBlur={() => setTimeout(() => setSearch(""), 1000)}
                 />
                 <img
                   src="/images/search.svg"
@@ -83,16 +84,15 @@ function AppLayout(props: AppLayoutProps) {
               </div>
             </div>
           </header>
-          <React.StrictMode>
-            <div className={classnames("site-body position-relative")}>
-              {renderSiteBody()}
-              {loadingPage && (
-                <div className="site__loader">
-                  <div className="loader " />
-                </div>
-              )}
-            </div>
-          </React.StrictMode>
+
+          <div className={classnames("site-body position-relative")}>
+            {renderSiteBody()}
+            {loadingPage && (
+              <div className="site__loader">
+                <div className="loader " />
+              </div>
+            )}
+          </div>
 
           <footer className="site-footer" />
         </div>

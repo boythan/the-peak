@@ -2,10 +2,7 @@
 // base
 */
 @import "./variables";
-
-@function breakpoint($name) {
-  @return map_get($breakpoints, $name);
-}
+@import "./mixins/responsive";
 
 html {
   height: 100%;

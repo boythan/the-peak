@@ -1,5 +1,12 @@
 @import "../mixins/news-card";
 @import "../variables";
+@import "../mixins/responsive";
+
+.news-block__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .news-block__container {
   display: flex;
@@ -19,4 +26,16 @@
 
 .news-block__news-item:nth-child(3n + 0) {
   margin-right: 0px !important;
+}
+
+@media (max-width: breakpoint(sm-end)) {
+  .news-block__header {
+    flex-direction: column;
+    padding-bottom: $spacer * 5;
+  }
+
+  .news-block__news-item {
+    width: 100%;
+    margin-right: 0px;
+  }
 }
