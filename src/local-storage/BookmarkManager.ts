@@ -1,4 +1,5 @@
-import _, { filter, includes, map } from "lodash";
+import _, { filter, includes, map, sortBy } from "lodash";
+import moment from "moment";
 import { INews } from "../interface/news";
 
 const BOOKMARK_KEY: string = "the-peak-bookmark";
@@ -12,8 +13,19 @@ const BookmarkManager = {
     localStorage.set(BOOKMARK_KEY, []);
   },
 
-  getAll: () => {
-    return JSON.parse(localStorage.getItem(BOOKMARK_KEY) ?? "[]");
+  getAll: (sort = "newest") => {
+    const allBookmark = JSON.parse(localStorage.getItem(BOOKMARK_KEY) ?? "[]");
+
+    const bookmarkSorted = sortBy(allBookmark, (item) => {
+      const newsTimestamp = moment(item.webPublicationDate).valueOf();
+      if (sort === "newest") {
+        return -newsTimestamp;
+      }
+
+      return newsTimestamp;
+    });
+
+    return bookmarkSorted;
   },
 
   add: (bookMark: INews) => {

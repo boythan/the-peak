@@ -7,14 +7,14 @@ import BookmarkManager from "../../local-storage/BookmarkManager";
 
 const BookmarkPage = () => {
   const [newsList, setNewList] = useState<INews[]>([]);
-  const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
+  const [newsSortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
 
   useEffect(() => {
     loadNews();
-  }, [sortBy]);
+  }, [newsSortBy]);
 
   const loadNews = () => {
-    const allBookmark = BookmarkManager.getAll();
+    const allBookmark = BookmarkManager.getAll(newsSortBy?.id);
     setNewList(allBookmark);
   };
 
@@ -22,7 +22,7 @@ const BookmarkPage = () => {
     <Fragment>
       <div className="container">
         <NewsBlockHeader
-          sortBy={sortBy}
+          sortBy={newsSortBy}
           onChangeSort={(item) => setSortBy(item)}
           title="All bookmark"
           hideBookmark
