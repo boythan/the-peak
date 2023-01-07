@@ -1,6 +1,6 @@
 // react
 import classnames from "classnames";
-import { debounce, isEmpty } from "lodash";
+import { debounce, isArray, isEmpty } from "lodash";
 import React, { Fragment, PropsWithChildren, useState } from "react";
 import AppLink from "../components/AppLink";
 import AppLayoutContext from "../context/app";
@@ -11,11 +11,41 @@ export interface AppLayoutProps extends PropsWithChildren<{}> {}
 function AppLayout(props: AppLayoutProps) {
   const { children } = props;
   const [search, setSearch] = useState<string>("");
-  const [loadingPage, setLoadingPage] = useState(true);
+  const [loadingPage, setLoadingPage] = useState(false);
 
   const onChangeSearch = debounce((event) => {
     setSearch(event?.target?.value);
   }, 500);
+
+  const fecthNews = (promiseFunction, resolve) => {
+    if (!promiseFunction) {
+      return;
+    }
+    setLoadingPage(true);
+
+    const promiseAll = promiseFunction.map((pro) => {
+      let taskItem;
+      if (!isArray(pro.params)) taskItem = pro.method(pro.params);
+      else taskItem = pro.method(...pro.params);
+
+      return taskItem;
+    });
+    const task = Promise.all(promiseAll);
+
+    task
+      .then((result: any[]) => {
+        if (result) {
+          // Success
+          setLoadingPage(false);
+          console.log("result", result);
+          resolve && resolve(result);
+        }
+      })
+      .catch((error) => {
+        // this.setError(error);
+        setLoadingPage(false);
+      });
+  };
 
   const renderSiteBody = () => {
     if (!isEmpty(search)) {
@@ -26,7 +56,7 @@ function AppLayout(props: AppLayoutProps) {
   };
 
   return (
-    <AppLayoutContext.Provider value={{ loadingPage, setLoadingPage }}>
+    <AppLayoutContext.Provider value={{ fecthNews, setSearch }}>
       <Fragment>
         <div className="site">
           <header className="site-header">

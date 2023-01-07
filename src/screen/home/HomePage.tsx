@@ -10,33 +10,34 @@ import { NEWS_HOME_SORT } from "../../constant/news";
 import AppLayoutContext from "../../context/app";
 import { INews } from "../../interface/news";
 
-interface IHomePage {}
-
-const HomePage = ({}: IHomePage) => {
+const HomePage = () => {
   const [topStories, setTopStories] = useState<INews[]>([]);
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
-  const { setLoadingPage, loadingPage } = useContext(AppLayoutContext);
+  const { fecthNews } = useContext(AppLayoutContext);
 
   useEffect(() => {
-    setTimeout(() => {
-      loadNews();
-    }, 2000);
-
-    setLoadingPage(true);
+    loadNews();
   }, [sortBy]);
 
   const loadNews = () => {
-    API.search({
-      "show-fields": "thumbnail,trailText",
-      page: 1,
-      "page-size": 8,
-      "order-by": sortBy?.id,
-      section: "news",
-    }).then((res: any) => {
-      const newsList = res?.data?.response?.results ?? [];
-      setTopStories(newsList);
-      setLoadingPage(false);
-    });
+    fecthNews(
+      [
+        {
+          method: API.search,
+          params: {
+            "show-fields": "thumbnail,trailText",
+            page: 1,
+            "page-size": 8,
+            "order-by": sortBy?.id,
+            section: "news",
+          },
+        },
+      ],
+      ([res]) => {
+        const newsList = res?.data?.response?.results ?? [];
+        setTopStories(newsList);
+      }
+    );
   };
 
   return (

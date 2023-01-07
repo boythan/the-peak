@@ -54,7 +54,7 @@ const NewsDetail = ({ news }: INewsDetail) => {
           />
         </div>
         <div
-          className="news-detail__image-container"
+          className="news-detail__image-container pl-3"
           hidden={!fields?.thumbnail}
         >
           <img src={fields?.thumbnail} className="news-detail__image" />

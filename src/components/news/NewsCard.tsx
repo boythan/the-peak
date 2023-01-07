@@ -1,6 +1,8 @@
 // react
 // third-party
 import classnames from "classnames";
+import { useContext } from "react";
+import AppLayoutContext from "../../context/app";
 import { INews } from "../../interface/news";
 import AppLink from "../AppLink";
 
@@ -10,6 +12,7 @@ export interface NewsCardProps {
 }
 
 function NewsCard(props: NewsCardProps) {
+  const { setSearch } = useContext(AppLayoutContext);
   const { news, className } = props;
   const { fields, id, webTitle } = news;
   const containerClasses = classnames(
@@ -22,7 +25,11 @@ function NewsCard(props: NewsCardProps) {
   const imageClass = classnames("news-card__image");
 
   return (
-    <AppLink href={`/news/${news?.id}`} className={containerClasses}>
+    <AppLink
+      href={`/news/${news?.id}`}
+      className={containerClasses}
+      onClick={() => setSearch("")}
+    >
       <img
         className={imageClass}
         src={fields?.thumbnail ?? "/images/logo.png"}

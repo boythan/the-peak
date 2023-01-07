@@ -1,9 +1,10 @@
 import { isEmpty, throttle } from "lodash";
-import { Fragment, memo, useEffect, useRef, useState } from "react";
+import { Fragment, memo, useContext, useEffect, useRef, useState } from "react";
 import API from "../../api/API";
 import NewsBlock from "../../components/news/NewsBlock";
 import NewsBlockHeader from "../../components/news/NewsBlockHeader";
 import { NEWS_HOME_SORT } from "../../constant/news";
+import AppLayoutContext from "../../context/app";
 import { INews } from "../../interface/news";
 
 interface ISearchPageProps {
@@ -24,13 +25,13 @@ const SearchPage = ({ search }: ISearchPageProps) => {
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
   const [loadingMore, setLoadingMore] = useState(false);
   const pageIndex = useRef(1);
-
+  const { fecthNews } = useContext(AppLayoutContext);
   const [searchState, setSearchState] = useState<ISearchState>(InitSearchState);
 
   useEffect(() => {
     pageIndex.current = 1;
     setSearchState(InitSearchState);
-    loadNews();
+    fecthNews([{ method: loadNews }]);
   }, [sortBy?.id, search]);
 
   useEffect(() => {
@@ -56,9 +57,10 @@ const SearchPage = ({ search }: ISearchPageProps) => {
   }, 400);
 
   const loadNews = () => {
-    if (isEmpty(search) || !searchState?.hasMoreData) return;
+    if (isEmpty(search) || !searchState?.hasMoreData)
+      return Promise.resolve(true);
 
-    API.search({
+    return API.search({
       q: search,
       "show-fields": "thumbnail,trailText",
       page: pageIndex.current,

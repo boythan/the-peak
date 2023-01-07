@@ -1,18 +1,24 @@
 .news-detail__content-container {
-  flex-grow: 3;
+  flex: 3;
+  max-width: 100%;
 }
 
 .news-detail__image-container {
-  flex-grow: 2;
-  display: flex;
-  align-items: center;
+  flex: 2;
+  //   display: flex;
 }
 
 .news-detail__image {
+  margin-top: 50vh;
   width: 100%;
   object-fit: contain;
 }
 
 .news-detail__content-body {
   border-top: 1px solid rgba(151, 151, 151, 0.2);
+  img {
+    width: 100%;
+    object-fit: contain;
+    height: auto;
+  }
 }
