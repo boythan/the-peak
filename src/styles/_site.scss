@@ -43,6 +43,18 @@
   min-width: 90px;
 }
 
+.site__loader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
 .site-header__search-input {
   background-color: transparent;
   border: none;

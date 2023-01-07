@@ -1,5 +1,5 @@
 import { map, slice } from "lodash";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import API from "../../api/API";
 import NewsBlockCulture from "../../components/news/NewsBlockCulture";
 import NewsBlockHeader from "../../components/news/NewsBlockHeader";
@@ -7,6 +7,7 @@ import NewsBlockLifeStyle from "../../components/news/NewsBlockLifeStyle";
 import NewsBlockSport from "../../components/news/NewsBlockSport";
 import NewsCard from "../../components/news/NewsCard";
 import { NEWS_HOME_SORT } from "../../constant/news";
+import AppLayoutContext from "../../context/app";
 import { INews } from "../../interface/news";
 
 interface IHomePage {}
@@ -14,9 +15,14 @@ interface IHomePage {}
 const HomePage = ({}: IHomePage) => {
   const [topStories, setTopStories] = useState<INews[]>([]);
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
+  const { setLoadingPage, loadingPage } = useContext(AppLayoutContext);
 
   useEffect(() => {
-    loadNews();
+    setTimeout(() => {
+      loadNews();
+    }, 2000);
+
+    setLoadingPage(true);
   }, [sortBy]);
 
   const loadNews = () => {
@@ -29,6 +35,7 @@ const HomePage = ({}: IHomePage) => {
     }).then((res: any) => {
       const newsList = res?.data?.response?.results ?? [];
       setTopStories(newsList);
+      setLoadingPage(false);
     });
   };
 
@@ -37,7 +44,9 @@ const HomePage = ({}: IHomePage) => {
       <div className="container">
         <NewsBlockHeader
           sortBy={sortBy}
-          onChangeSort={(item) => setSortBy(item)}
+          onChangeSort={(item) => {
+            setSortBy(item);
+          }}
           title="Top stories"
         />
         <div className="home__top-story-grid home__top-story-banner">
