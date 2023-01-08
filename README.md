@@ -2,12 +2,22 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Enviroment
 
+```bash
+
 Node version 16.8.0
+
 Yarn version 1.22.19
+```
+
 
 ## Packages installemnt
 
+```bash
 npm install
+# or
+yarn
+```
+
 
 ## Run project
 
