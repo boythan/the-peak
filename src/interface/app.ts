@@ -1,3 +1,9 @@
+export enum AppFetchNewsState {
+  LOADING = "loading",
+  SUCCESS = "success",
+  ERROR = "error",
+}
+
 export enum AppNotificationType {
   ERROR = "error",
   SUCCESS = "success",

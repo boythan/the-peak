@@ -4,7 +4,7 @@ import { debounce, isArray, isEmpty } from "lodash";
 import { Fragment, PropsWithChildren, useEffect, useState } from "react";
 import AppLink from "../components/AppLink";
 import AppLayoutContext from "../context/app";
-import { AppNotificationType, IAppNotification } from "../interface/app";
+import { AppFetchNewsState, IAppNotification } from "../interface/app";
 import SearchPage from "../screen/search/SearchPage";
 
 export interface AppLayoutProps extends PropsWithChildren<{}> {}
@@ -12,9 +12,11 @@ export interface AppLayoutProps extends PropsWithChildren<{}> {}
 function AppLayout(props: AppLayoutProps) {
   const { children } = props;
   const [search, setSearch] = useState<string>("");
-  const [loadingPage, setLoadingPage] = useState(false);
   const [appNotification, setAppNotification] =
     useState<IAppNotification | null>(null);
+
+  const [fetchNewsState, setFetchNewsState] =
+    useState<AppFetchNewsState | null>();
 
   useEffect(() => {
     if (appNotification) {
@@ -30,7 +32,7 @@ function AppLayout(props: AppLayoutProps) {
     if (!promiseFunction) {
       return;
     }
-    setLoadingPage(true);
+    setFetchNewsState(AppFetchNewsState.LOADING);
 
     const promiseAll = promiseFunction.map((pro) => {
       let taskItem;
@@ -45,23 +47,32 @@ function AppLayout(props: AppLayoutProps) {
       .then((result: any[]) => {
         if (result) {
           // Success
-          setLoadingPage(false);
-          console.log("result", result);
+          setFetchNewsState(AppFetchNewsState.SUCCESS);
           resolve && resolve(result);
         }
       })
       .catch((error) => {
-        // this.setError(error);
-        setLoadingPage(false);
+        setFetchNewsState(AppFetchNewsState.ERROR);
       });
   };
 
   const renderSiteBody = () => {
+    if (fetchNewsState === AppFetchNewsState.ERROR) {
+      return renderFecthNewsError();
+    }
     if (!isEmpty(search)) {
       return <SearchPage search={search} />;
     }
 
     return children;
+  };
+
+  const renderFecthNewsError = () => {
+    return (
+      <div className="flex-center p-5">
+        <h6>Oops! Error 404</h6>
+      </div>
+    );
   };
 
   return (
@@ -96,7 +107,7 @@ function AppLayout(props: AppLayoutProps) {
 
           <div className={classnames("site-body position-relative")}>
             {renderSiteBody()}
-            {loadingPage && (
+            {fetchNewsState === AppFetchNewsState.LOADING && (
               <div className="site__loader">
                 <div className="loader " />
               </div>

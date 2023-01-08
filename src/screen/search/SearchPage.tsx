@@ -65,7 +65,7 @@ const SearchPage = ({ search }: ISearchPageProps) => {
       page: pageIndex.current,
       "page-size": 15,
       "order-by": sortBy?.id,
-      section: "news",
+      // section: "news",
     }).then((res: any) => {
       const newsListNew = res?.data?.response?.results ?? [];
       const total = res?.data?.response?.total ?? 0;
