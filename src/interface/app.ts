@@ -13,3 +13,8 @@ export interface IAppNotification {
   type: AppNotificationType;
   content: any;
 }
+
+export interface IAppPromiseFunc {
+  method: (...params: any) => Promise<any>;
+  params: any[];
+}

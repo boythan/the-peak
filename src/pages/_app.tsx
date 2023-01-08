@@ -5,6 +5,9 @@ import "../styles/index.scss";
 import AppLayout from "./AppLayout";
 
 export default function App({ Component, pageProps }: AppProps) {
+  /**
+   * Remove next's application site-loader view
+   */
   useEffect(() => {
     const preloader = document.querySelector(".site-preloader");
 

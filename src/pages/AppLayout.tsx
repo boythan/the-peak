@@ -4,31 +4,54 @@ import { debounce, isArray, isEmpty } from "lodash";
 import { Fragment, PropsWithChildren, useEffect, useState } from "react";
 import AppLink from "../components/AppLink";
 import AppLayoutContext from "../context/app";
-import { AppFetchNewsState, IAppNotification } from "../interface/app";
+import {
+  AppFetchNewsState,
+  IAppNotification,
+  IAppPromiseFunc,
+} from "../interface/app";
 import SearchPage from "../screen/search/SearchPage";
 
 export interface AppLayoutProps extends PropsWithChildren<{}> {}
 
+/**
+ * Main layout of web app, includes navigation area and content area
+ * Content area will be rendered by next's router
+ */
+
 function AppLayout(props: AppLayoutProps) {
   const { children } = props;
+
   const [search, setSearch] = useState<string>("");
+
   const [appNotification, setAppNotification] =
     useState<IAppNotification | null>(null);
 
   const [fetchNewsState, setFetchNewsState] =
     useState<AppFetchNewsState | null>();
 
+  /**
+   * after 3 seconds since app's notification is shown => hide notificaiton
+   */
   useEffect(() => {
     if (appNotification) {
       setTimeout(() => setAppNotification(null), 3000);
     }
   }, [appNotification]);
 
+  /**
+   * debounce user type searc box by 500ms
+   */
   const onChangeSearch = debounce((event) => {
     setSearch(event?.target?.value);
   }, 500);
 
-  const fecthNews = (promiseFunction, resolve) => {
+  /**
+   * This function be used to help making the Promise functions with a LoaderView or ErrorView
+   * LoaderView be shown whenever this function is emitted
+   * If Promise function is rejected => show ErrorView
+   * Promise functions's resolve will be passed to param resolve
+   */
+  const fecthNews = (promiseFunction: IAppPromiseFunc[], resolve) => {
     if (!promiseFunction) {
       return;
     }
