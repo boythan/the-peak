@@ -1,4 +1,9 @@
 // ----------------------------------------
+// -- Font style
+// ----------------------------------------
+$app-font: "Georgia", "sans-serif" !default;
+$body-font: "Roboto", "sans-serif" !default;
+// ----------------------------------------
 // -- Colors
 // ----------------------------------------
 $primary-color: rgba(9, 53, 123, 1) !default;
@@ -34,7 +39,7 @@ $font-weight-black: 900 !default;
 // ----------------------------------------
 $body-font-color: $text-dark !default;
 
-$body-font-family: var(--bodyFont) !default;
+$body-font-family: $body-font !default;
 $body-font-size: 16px !default;
 $body-font-weight: $font-weight-normal !default;
 $body-line-height: 24px !default;
@@ -47,12 +52,12 @@ $small-font-color: $text-dark !default;
 $small-font-size: 12px !default;
 $small-font-weight: $font-weight-normal !default;
 $small-line-height: 14px !default;
-$small-font-family: var(--bodyFont) !default;
+$small-font-family: $body-font !default;
 
 // ----------------------------------------
 // -- headers
 // ----------------------------------------
-$headers-font-family: var(--appFont) !default;
+$headers-font-family: $app-font !default;
 $headers-font-weight: 700 !default;
 $headers-font-style: normal !default;
 // h1
