@@ -18,7 +18,6 @@ const NewsBlockLifeStyle = ({ className }: INewsBlockLifeStyle) => {
   const loadNewsLifeStyle = () => {
     const params = {
       section: "lifeandstyle",
-      "show-fields": "thumbnail,trailText",
       page: 1,
       "page-size": 3,
     };

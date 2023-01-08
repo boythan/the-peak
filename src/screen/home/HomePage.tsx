@@ -25,11 +25,10 @@ const HomePage = () => {
         {
           method: API.search,
           params: {
-            "show-fields": "thumbnail,trailText",
             page: 1,
             "page-size": 8,
             "order-by": sortBy?.id,
-            section: "news",
+            // section: "news",
           },
         },
       ],

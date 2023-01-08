@@ -62,7 +62,6 @@ const SearchPage = ({ search }: ISearchPageProps) => {
 
     return API.search({
       q: search,
-      "show-fields": "thumbnail,trailText",
       page: pageIndex.current,
       "page-size": 15,
       "order-by": sortBy?.id,

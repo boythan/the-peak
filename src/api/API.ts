@@ -1,5 +1,5 @@
 import axios from "axios";
-import { APIKeyInterceptor } from "./Interceptors";
+import { APIKeyInterceptor, ShowFieldInterceptor } from "./Interceptors";
 import { API_SEARCH } from "./URL";
 const getInstance = () => {
   const instance = axios.create({
@@ -8,6 +8,7 @@ const getInstance = () => {
   });
 
   instance.interceptors.request.use(APIKeyInterceptor.addAPIKey);
+  instance.interceptors.request.use(ShowFieldInterceptor.addShowField);
 
   return instance;
 };

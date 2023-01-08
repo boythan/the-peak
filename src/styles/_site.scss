@@ -2,6 +2,7 @@
 // .site
 */
 @import "./variables";
+@import "./mixins/responsive";
 
 .site {
   min-height: 100%;
@@ -73,5 +74,10 @@
   &::placeholder {
     color: white;
     opacity: 0.4;
+  }
+}
+@media (max-width: breakpoint(sm-end)) {
+  .site-body {
+    padding: $spacer * 4;
   }
 }

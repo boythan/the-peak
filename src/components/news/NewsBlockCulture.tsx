@@ -18,7 +18,6 @@ const NewsBlockCulture = ({ className }: INewsBlockCulture) => {
   const loadNewsCulture = () => {
     const params = {
       section: "culture",
-      "show-fields": "thumbnail,trailText",
       page: 1,
       "page-size": 3,
     };

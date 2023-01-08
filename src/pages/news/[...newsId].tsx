@@ -1,5 +1,4 @@
 import { join } from "lodash";
-import { GetServerSideProps } from "next";
 import API from "../../api/API";
 import { INews } from "../../interface/news";
 import NewsDetail from "../../screen/news/NewsDetail";

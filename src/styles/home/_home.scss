@@ -61,6 +61,7 @@
 @media (max-width: breakpoint(sm-end)) {
   @for $i from 0 through 7 {
     .top-story-#{$i} {
+      min-height: $news-card-height;
       @include news-card__layout-grid-lg();
     }
   }

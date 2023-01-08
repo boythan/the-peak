@@ -18,7 +18,6 @@ const NewsBlockSport = ({ className }: INewsBlockSport) => {
   const loadNewsSport = () => {
     const params = {
       section: "sport",
-      "show-fields": "thumbnail,trailText",
       page: 1,
       "page-size": 3,
     };
