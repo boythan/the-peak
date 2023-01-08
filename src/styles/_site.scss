@@ -76,6 +76,25 @@
     opacity: 0.4;
   }
 }
+
+//site notification
+.site__notification {
+  width: 100%;
+  padding: $spacer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  &-success {
+    background-color: $success;
+  }
+
+  &-error {
+    background-color: $error;
+  }
+}
+
 @media (max-width: breakpoint(sm-end)) {
   .site-body {
     padding: $spacer * 4;

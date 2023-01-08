@@ -1,9 +1,10 @@
 // react
 import classnames from "classnames";
 import { debounce, isArray, isEmpty } from "lodash";
-import { Fragment, PropsWithChildren, useState } from "react";
+import { Fragment, PropsWithChildren, useEffect, useState } from "react";
 import AppLink from "../components/AppLink";
 import AppLayoutContext from "../context/app";
+import { AppNotificationType, IAppNotification } from "../interface/app";
 import SearchPage from "../screen/search/SearchPage";
 
 export interface AppLayoutProps extends PropsWithChildren<{}> {}
@@ -12,6 +13,14 @@ function AppLayout(props: AppLayoutProps) {
   const { children } = props;
   const [search, setSearch] = useState<string>("");
   const [loadingPage, setLoadingPage] = useState(false);
+  const [appNotification, setAppNotification] =
+    useState<IAppNotification | null>(null);
+
+  useEffect(() => {
+    if (appNotification) {
+      setTimeout(() => setAppNotification(null), 3000);
+    }
+  }, [appNotification]);
 
   const onChangeSearch = debounce((event) => {
     setSearch(event?.target?.value);
@@ -56,7 +65,7 @@ function AppLayout(props: AppLayoutProps) {
   };
 
   return (
-    <AppLayoutContext.Provider value={{ fecthNews }}>
+    <AppLayoutContext.Provider value={{ fecthNews, setAppNotification }}>
       <Fragment>
         <div className="site">
           <header className="site-header">
@@ -95,6 +104,13 @@ function AppLayout(props: AppLayoutProps) {
           </div>
 
           <footer className="site-footer" />
+          {appNotification && (
+            <div
+              className={`site__notification site__notification-${appNotification?.type}`}
+            >
+              {appNotification?.content}
+            </div>
+          )}
         </div>
       </Fragment>
     </AppLayoutContext.Provider>

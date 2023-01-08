@@ -1,6 +1,8 @@
 import moment from "moment";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import BookmarkButton from "../../components/bookmark/BookmarkButton";
+import AppLayoutContext from "../../context/app";
+import { AppNotificationType } from "../../interface/app";
 import { INews } from "../../interface/news";
 import BookmarkManager from "../../local-storage/BookmarkManager";
 
@@ -10,7 +12,7 @@ interface INewsDetail {
 
 const NewsDetail = ({ news }: INewsDetail) => {
   const { fields, id, webTitle, webPublicationDate } = news;
-  console.log("webPublicationDate", webPublicationDate);
+  const { setAppNotification } = useContext(AppLayoutContext);
 
   const [isBookmark, setIsBookmark] = useState(false);
 
@@ -23,11 +25,29 @@ const NewsDetail = ({ news }: INewsDetail) => {
   const addBookmark = () => {
     BookmarkManager.add(news);
     setIsBookmark(true);
+    setAppNotification({
+      type: AppNotificationType.SUCCESS,
+      content: (
+        <div className="d-flex">
+          <img src="/images/bookmark-on.svg" className="mr-2" />
+          <text className="text-white">SAVED TO BOOKMARKS</text>
+        </div>
+      ),
+    });
   };
 
   const removeBookmark = () => {
     BookmarkManager.remove(news?.id);
     setIsBookmark(false);
+    setAppNotification({
+      type: AppNotificationType.ERROR,
+      content: (
+        <div className="d-flex">
+          <img src="/images/bookmark-off.svg" className="mr-2" />
+          <text className="text-white">REMOVED FROM BOOKMARKS</text>
+        </div>
+      ),
+    });
   };
 
   return (
