@@ -21,7 +21,7 @@ function Dropdown(props: DropdownProps) {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (event) => {
     setOpen((prev) => !prev);
   };
 
@@ -71,7 +71,11 @@ function Dropdown(props: DropdownProps) {
   };
 
   return (
-    <div className={classes} ref={wrapperRef}>
+    <div
+      className={classes}
+      ref={wrapperRef}
+      onClick={(event) => event.stopPropagation()}
+    >
       <button className={buttonClass} type="button" onClick={handleButtonClick}>
         {label}
         <img src={"/images/arrow_drop_down.svg"} />

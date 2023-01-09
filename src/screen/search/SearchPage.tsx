@@ -32,16 +32,15 @@ const SearchPage = ({ search }: ISearchPageProps) => {
     if (searchState?.hasMoreData && !searchState?.data?.length) {
       fetchNews([{ method: loadNews }]);
     }
+    console.log("run to searchState", searchState);
   }, [searchState]);
 
   /**
    * Emitted whenever user change sortBy or search text
    */
   useEffect(() => {
-    if (!searchState?.hasMoreData && searchState?.data?.length) {
-      pageIndex.current = 1;
-      setSearchState(InitSearchState);
-    }
+    pageIndex.current = 1;
+    setSearchState(InitSearchState);
   }, [sortBy?.id, search]);
 
   /**

@@ -1,26 +1,59 @@
+import { join } from "lodash";
 import moment from "moment";
+import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
+import API from "../../api/API";
 import BookmarkButton from "../../components/bookmark/BookmarkButton";
 import AppLayoutContext from "../../context/app";
 import { AppNotificationType } from "../../interface/app";
 import { INews } from "../../interface/news";
 import BookmarkManager from "../../local-storage/BookmarkManager";
 
-interface INewsDetail {
-  news: INews;
-}
+const NewsDetail = () => {
+  const router = useRouter();
 
-const NewsDetail = ({ news }: INewsDetail) => {
-  const { setAppNotification } = useContext(AppLayoutContext);
-  const { fields, webTitle, webPublicationDate } = news;
-
+  const { setAppNotification, fetchNews } = useContext(AppLayoutContext);
+  const [news, setNews] = useState<INews | null>();
   const [isBookmark, setIsBookmark] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsBookmark(BookmarkManager.isBookmarked(news?.id));
+    let ignore = false;
+
+    const newsIds = router.query?.newsId ?? "";
+    const newsId = join(newsIds, "/");
+
+    if (news?.id === newsId) return;
+
+    if (newsId?.length) {
+      fetchNews(
+        [
+          {
+            method: API.detail,
+            params: [
+              newsId,
+              {
+                "show-fields": "thumbnail,trailText,headline,body",
+                "show-elements": "audio,image",
+              },
+            ],
+          },
+        ],
+        ([newsRes]) => {
+          const news = newsRes?.data?.response?.content;
+          if (!ignore) {
+            setIsBookmark(BookmarkManager.isBookmarked(news?.id));
+            setNews(news);
+          }
+        }
+      );
     }
-  }, []);
+
+    return () => {
+      ignore = true;
+    };
+  }, [router.query]);
+
+  if (!news) return <div />;
 
   const addBookmark = () => {
     BookmarkManager.add(news);
@@ -68,12 +101,12 @@ const NewsDetail = ({ news }: INewsDetail) => {
             />
           )}
           <div className="mt-5 small">
-            {moment(webPublicationDate).format("ddd DD MMM YYYY HH:mm Z")}
+            {moment(news?.webPublicationDate).format("ddd DD MMM YYYY HH:mm Z")}
           </div>
-          <h4>{webTitle}</h4>
-          <h6>{fields?.headline}</h6>
+          <h4 className="mt-5">{news?.webTitle}</h4>
+          <h6 className="mt-4">{news?.fields?.headline}</h6>
           <div
-            dangerouslySetInnerHTML={{ __html: fields?.body ?? "" }}
+            dangerouslySetInnerHTML={{ __html: news?.fields?.body ?? "" }}
             className="news-detail__content-body mt-4"
           />
         </div>

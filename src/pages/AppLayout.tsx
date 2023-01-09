@@ -48,10 +48,6 @@ function AppLayout(props: AppLayoutProps) {
     }
   }, [appNotification]);
 
-  useEffect(() => {
-    clearTextSearch();
-  }, [router.asPath]);
-
   const clearTextSearch = () => {
     setSearch("");
     if (inputSearchRef?.current) {
@@ -111,7 +107,7 @@ function AppLayout(props: AppLayoutProps) {
   return (
     <AppLayoutContext.Provider value={{ fetchNews, setAppNotification }}>
       <Fragment>
-        <div className="site">
+        <div className="site" onClick={clearTextSearch}>
           <header className="site-header">
             <div className="container position-relative h-100">
               <Link href={"/"}>
