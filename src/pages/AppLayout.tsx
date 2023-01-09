@@ -113,7 +113,10 @@ function AppLayout(props: AppLayoutProps) {
               <Link href={"/"}>
                 <img src="/images/logo.png" className="site-header__logo" />
               </Link>
-              <div className="site-header__search-container flex-center p-1">
+              <div
+                className="site-header__search-container flex-center p-1"
+                onClick={(event) => event.stopPropagation()}
+              >
                 <input
                   ref={(el) => (inputSearchRef.current = el)}
                   id="site-search-input"
@@ -121,9 +124,7 @@ function AppLayout(props: AppLayoutProps) {
                     "site-header__search-input-focus": !isEmpty(search),
                   })}
                   placeholder="Search all news"
-                  autoFocus
                   onChange={(event) => onChangeSearch(event)}
-                  // onBlur={onBlurSearchInput}
                 />
                 <img
                   src="/images/search.svg"
