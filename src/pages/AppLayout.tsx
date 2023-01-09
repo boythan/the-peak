@@ -16,7 +16,7 @@ export interface AppLayoutProps extends PropsWithChildren<{}> {}
 
 /**
  * Main layout of web app, includes navigation area and content area
- * Content area will be rendered by next's router
+ * Content area will be dynamic area for showing different content based on the page.
  */
 
 function AppLayout(props: AppLayoutProps) {

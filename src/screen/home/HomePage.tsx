@@ -1,17 +1,23 @@
 import { map, slice } from "lodash";
 import { Fragment, useContext, useEffect, useState } from "react";
 import API from "../../api/API";
-import NewsBlockCulture from "../../components/news/NewsBlockCulture";
+import NewsBlock from "../../components/news/NewsBlock";
 import NewsBlockHeader from "../../components/news/NewsBlockHeader";
-import NewsBlockLifeStyle from "../../components/news/NewsBlockLifeStyle";
-import NewsBlockSport from "../../components/news/NewsBlockSport";
 import NewsCard from "../../components/news/NewsCard";
 import { NEWS_HOME_SORT } from "../../constant/news";
 import AppLayoutContext from "../../context/app";
 import { INews } from "../../interface/news";
 
+interface IHomeNewsDataState {
+  topStories: INews[];
+  categoryBase: INews[];
+}
+
 const HomePage = () => {
-  const [topStories, setTopStories] = useState<INews[]>([]);
+  const [homeNewsData, setHomeNewsData] = useState<IHomeNewsDataState>({
+    topStories: [],
+    categoryBase: [],
+  });
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
   const { fetchNews } = useContext(AppLayoutContext);
 
@@ -34,10 +40,20 @@ const HomePage = () => {
             section: "news",
           },
         },
+        {
+          method: API.search,
+          params: {
+            section: "sport|culture|lifeandstyle",
+            page: 1,
+            "order-by": sortBy?.id,
+            "page-size": 3,
+          },
+        },
       ],
-      ([res]) => {
-        const newsList = res?.data?.response?.results ?? [];
-        setTopStories(newsList);
+      ([topStoryRes, categoryBaseRes]) => {
+        const topStories = topStoryRes?.data?.response?.results ?? [];
+        const categoryBase = categoryBaseRes?.data?.response?.results ?? [];
+        setHomeNewsData({ topStories, categoryBase });
       }
     );
   };
@@ -53,18 +69,19 @@ const HomePage = () => {
           title="Top stories"
         />
         <div className="home__top-story-grid home__top-story-banner">
-          {map(slice(topStories, 0, 5), (news, index) => (
+          {map(slice(homeNewsData?.topStories, 0, 5), (news, index) => (
             <NewsCard news={news} className={"top-story-" + index} />
           ))}
         </div>
         <div className="home__top-story-grid home__top-story-footer">
-          {map(slice(topStories, 5, 8), (news, index) => (
+          {map(slice(homeNewsData?.topStories, 5, 8), (news, index) => (
             <NewsCard news={news} className={"top-story-" + (index + 5)} />
           ))}
         </div>
-        <NewsBlockSport className="home__news-block" />
-        <NewsBlockCulture className="home__news-block" />
-        <NewsBlockLifeStyle className="home__news-block" />
+        <div className="home__news-block">
+          <h6>Sports</h6>
+          <NewsBlock newsList={homeNewsData?.categoryBase} />
+        </div>
       </div>
     </Fragment>
   );

@@ -8,8 +8,9 @@ NextJs help to boost your SEO strategy, increase your rankings position in searc
 Node version 16.8.0
 
 Yarn version 1.22.19
-```
 
+Npm version 7.21.0
+```
 
 ## Packages installment
 
@@ -31,8 +32,6 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
-
 ## Run production server
 
 First, run build application:
@@ -52,5 +51,3 @@ yarn start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
