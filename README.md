@@ -1,6 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+NextJs help to boost your SEO strategy, increase your rankings position in search engine results
 
-## Enviroment
+## Environment
 
 ```bash
 
@@ -10,7 +11,7 @@ Yarn version 1.22.19
 ```
 
 
-## Packages installemnt
+## Packages installment
 
 ```bash
 npm install

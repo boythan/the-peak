@@ -18,6 +18,7 @@ export async function getServerSideProps(context) {
   if (newsId?.length) {
     const newsRes = await API.detail(newsId as string, {
       "show-fields": "thumbnail,trailText,headline,body",
+      "show-elements": "audio,image",
     });
     news = newsRes?.data?.response?.content;
   }

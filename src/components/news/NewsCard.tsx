@@ -1,8 +1,8 @@
 // react
 // third-party
 import classnames from "classnames";
+import Link from "next/link";
 import { INews } from "../../interface/news";
-import AppLink from "../AppLink";
 
 export interface NewsCardProps {
   news: INews;
@@ -11,7 +11,7 @@ export interface NewsCardProps {
 
 function NewsCard(props: NewsCardProps) {
   const { news, className } = props;
-  const { fields, id, webTitle } = news;
+  const { fields, webTitle } = news;
   const containerClasses = classnames(
     "news-card",
     {
@@ -19,10 +19,11 @@ function NewsCard(props: NewsCardProps) {
     },
     className
   );
+
   const imageClass = classnames("news-card__image");
 
   return (
-    <AppLink href={`/news/${news?.id}`} className={containerClasses}>
+    <Link href={`/news/${news?.id}`} className={containerClasses}>
       <img
         className={imageClass}
         src={fields?.thumbnail ?? "/images/logo.png"}
@@ -34,7 +35,7 @@ function NewsCard(props: NewsCardProps) {
           dangerouslySetInnerHTML={{ __html: fields?.trailText }}
         />
       </div>
-    </AppLink>
+    </Link>
   );
 }
 

@@ -48,7 +48,6 @@ const BookmarkManager = {
 
   isBookmarked: (id: string) => {
     const allBookmark = BookmarkManager.getAll() ?? [];
-    console.log("allBookmark", allBookmark);
     const bookmarkIds = map(allBookmark, (item) => item.id);
     return includes(bookmarkIds, id);
   },

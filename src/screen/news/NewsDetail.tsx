@@ -57,12 +57,6 @@ const NewsDetail = ({ news }: INewsDetail) => {
   return (
     <div className="container">
       <div className="news-detail__container">
-        <div
-          className="news-detail__image-container"
-          hidden={!fields?.thumbnail}
-        >
-          <img src={fields?.thumbnail} className="news-detail__image" />
-        </div>
         <div className="news-detail__content-container">
           {!isBookmark && (
             <BookmarkButton onClick={addBookmark} content="add bookmark" />

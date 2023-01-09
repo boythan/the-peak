@@ -5,7 +5,6 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
 // application
-import Icon from "../icon/Icon";
 import Menu from "../menu/Menu";
 
 export interface DropdownProps {
@@ -18,14 +17,7 @@ export interface DropdownProps {
 }
 
 function Dropdown(props: DropdownProps) {
-  const {
-    label,
-    items,
-    onClick,
-    classButton,
-    className,
-    overlay,
-  } = props;
+  const { label, items, onClick, classButton, className, overlay } = props;
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -70,12 +62,7 @@ function Dropdown(props: DropdownProps) {
 
   const renderOverlay = () => {
     if (items && items?.length > 0) {
-      return (
-        <Menu
-          items={items as any}
-          onClick={handleItemClick}
-        />
-      );
+      return <Menu items={items as any} onClick={handleItemClick} />;
     }
     if (!overlay) {
       return overlay;
@@ -87,7 +74,7 @@ function Dropdown(props: DropdownProps) {
     <div className={classes} ref={wrapperRef}>
       <button className={buttonClass} type="button" onClick={handleButtonClick}>
         {label}
-        <Icon name="arrow_drop_down" />
+        <img src={"/images/arrow_drop_down.svg"} />
       </button>
 
       <div className="dropdown__body">{renderOverlay()}</div>

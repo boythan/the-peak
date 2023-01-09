@@ -1,11 +1,12 @@
 // react
 import classnames from "classnames";
 import { debounce, isArray, isEmpty } from "lodash";
+import Link from "next/link";
 import { Fragment, PropsWithChildren, useEffect, useState } from "react";
-import AppLink from "../components/AppLink";
 import AppLayoutContext from "../context/app";
 import {
   AppFetchNewsState,
+  AppNotificationType,
   IAppNotification,
   IAppPromiseFunc,
 } from "../interface/app";
@@ -104,9 +105,9 @@ function AppLayout(props: AppLayoutProps) {
         <div className="site">
           <header className="site-header">
             <div className="container position-relative h-100">
-              <AppLink href={"/"}>
+              <Link href={"/"}>
                 <img src="/images/logo.png" className="site-header__logo" />
-              </AppLink>
+              </Link>
               <div className="site-header__search-container flex-center p-1">
                 <input
                   id="site-search-input"

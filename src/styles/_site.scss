@@ -79,12 +79,14 @@
 
 //site notification
 .site__notification {
-  width: 100%;
+  width: -webkit-fill-available;
   padding: $spacer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  position: fixed;
+  bottom: 0px;
 
   &-success {
     background-color: $success;

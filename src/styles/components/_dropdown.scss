@@ -19,6 +19,9 @@
   &:focus {
     outline: none;
   }
+  > img {
+    margin-left: $spacer;
+  }
 }
 
 .dropdown__body {
