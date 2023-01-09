@@ -44,7 +44,8 @@
   min-width: 90px;
 }
 
-.site__loader {
+.site__loader,
+.site__error {
   position: absolute;
   top: 0;
   bottom: 0;

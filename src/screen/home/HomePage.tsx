@@ -26,7 +26,7 @@ const HomePage = () => {
   }, [sortBy]);
 
   /**
-   * Fetch news list for top stories view
+   * Fetch news list for top stories and category base view
    */
   const loadNews = () => {
     fetchNews(

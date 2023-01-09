@@ -28,13 +28,20 @@ const SearchPage = ({ search }: ISearchPageProps) => {
   const { fetchNews } = useContext(AppLayoutContext);
   const [searchState, setSearchState] = useState<ISearchState>(InitSearchState);
 
+  useEffect(() => {
+    if (searchState?.hasMoreData && !searchState?.data?.length) {
+      fetchNews([{ method: loadNews }]);
+    }
+  }, [searchState]);
+
   /**
-   * Emitted when the first time render and whenever user select sort or search text
+   * Emitted whenever user change sortBy or search text
    */
   useEffect(() => {
-    pageIndex.current = 1;
-    setSearchState(InitSearchState);
-    fetchNews([{ method: loadNews }]);
+    if (!searchState?.hasMoreData && searchState?.data?.length) {
+      pageIndex.current = 1;
+      setSearchState(InitSearchState);
+    }
   }, [sortBy?.id, search]);
 
   /**
@@ -70,7 +77,7 @@ const SearchPage = ({ search }: ISearchPageProps) => {
       return Promise.resolve(true);
 
     return API.search({
-      q: search,
+      q: `"${search}"`,
       page: pageIndex.current,
       "page-size": 15,
       "order-by": sortBy?.id,

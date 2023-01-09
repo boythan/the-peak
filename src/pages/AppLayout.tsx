@@ -2,7 +2,14 @@
 import classnames from "classnames";
 import { debounce, isArray, isEmpty } from "lodash";
 import Link from "next/link";
-import { Fragment, PropsWithChildren, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import {
+  Fragment,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import AppLayoutContext from "../context/app";
 import {
   AppFetchNewsState,
@@ -21,6 +28,8 @@ export interface AppLayoutProps extends PropsWithChildren<{}> {}
 
 function AppLayout(props: AppLayoutProps) {
   const { children } = props;
+  const router = useRouter();
+  let inputSearchRef = useRef<HTMLInputElement | null>();
 
   const [search, setSearch] = useState<string>("");
 
@@ -38,6 +47,17 @@ function AppLayout(props: AppLayoutProps) {
       setTimeout(() => setAppNotification(null), 3000);
     }
   }, [appNotification]);
+
+  useEffect(() => {
+    clearTextSearch();
+  }, [router.asPath]);
+
+  const clearTextSearch = () => {
+    setSearch("");
+    if (inputSearchRef?.current) {
+      inputSearchRef!.current!.value = "";
+    }
+  };
 
   /**
    * debounce user type search box by 500ms
@@ -80,29 +100,12 @@ function AppLayout(props: AppLayoutProps) {
       });
   };
 
-  const onBlurSearchInput = (event) =>
-    setTimeout(() => {
-      setSearch("");
-      event.target.value = "";
-    }, 700);
-
   const renderSiteBody = () => {
-    if (fetchNewsState === AppFetchNewsState.ERROR) {
-      return renderFetchNewsError();
-    }
     if (!isEmpty(search)) {
       return <SearchPage search={search} />;
     }
 
     return children;
-  };
-
-  const renderFetchNewsError = () => {
-    return (
-      <div className="flex-center p-5">
-        <h6>Oops! Error 404</h6>
-      </div>
-    );
   };
 
   return (
@@ -116,6 +119,7 @@ function AppLayout(props: AppLayoutProps) {
               </Link>
               <div className="site-header__search-container flex-center p-1">
                 <input
+                  ref={(el) => (inputSearchRef.current = el)}
                   id="site-search-input"
                   className={classnames("site-header__search-input", {
                     "site-header__search-input-focus": !isEmpty(search),
@@ -123,7 +127,7 @@ function AppLayout(props: AppLayoutProps) {
                   placeholder="Search all news"
                   autoFocus
                   onChange={(event) => onChangeSearch(event)}
-                  onBlur={onBlurSearchInput}
+                  // onBlur={onBlurSearchInput}
                 />
                 <img
                   src="/images/search.svg"
@@ -140,6 +144,11 @@ function AppLayout(props: AppLayoutProps) {
             {fetchNewsState === AppFetchNewsState.LOADING && (
               <div className="site__loader">
                 <div className="loader " />
+              </div>
+            )}
+            {fetchNewsState === AppFetchNewsState.ERROR && (
+              <div className="site__error flex-center p-5">
+                <h6>Oops! Error 404</h6>
               </div>
             )}
           </div>

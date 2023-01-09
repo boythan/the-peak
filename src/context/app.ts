@@ -3,7 +3,9 @@ import { IAppNotification } from "../interface/app";
 
 export interface IAppLayoutState {
   fetchNews: (promiseFunctions: any, resolve?: any) => void;
-  setAppNotification: (notification: SetStateAction<IAppNotification | null>) => void;
+  setAppNotification: (
+    notification: SetStateAction<IAppNotification | null>
+  ) => void;
 }
 
 const appLayoutState: IAppLayoutState = {
