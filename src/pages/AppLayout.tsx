@@ -80,6 +80,12 @@ function AppLayout(props: AppLayoutProps) {
       });
   };
 
+  const onBlurSearchInput = (event) =>
+    setTimeout(() => {
+      setSearch("");
+      event.target.value = "";
+    }, 700);
+
   const renderSiteBody = () => {
     if (fetchNewsState === AppFetchNewsState.ERROR) {
       return renderFetchNewsError();
@@ -117,7 +123,7 @@ function AppLayout(props: AppLayoutProps) {
                   placeholder="Search all news"
                   autoFocus
                   onChange={(event) => onChangeSearch(event)}
-                  onBlur={() => setTimeout(() => setSearch(""), 1000)}
+                  onBlur={onBlurSearchInput}
                 />
                 <img
                   src="/images/search.svg"
