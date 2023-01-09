@@ -55,8 +55,8 @@ export default function Document() {
                                         width: 100px;
                                         height: 100px;
                                         border-radius: 50px;
-                                        border: 3px solid rgba(0, 0, 0, .2);
-                                        border-top-color: rgba(0, 0, 0, .6);
+                                        border: 3px solid rgba(9, 53, 123, 0.2);
+                                        border-top-color: rgba(9, 53, 123, 0.6);
 
                                         animation-name: site-preloader-animation;
                                         animation-duration: .5s;

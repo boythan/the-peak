@@ -7,14 +7,20 @@ export interface PageProps {
   news: INews | null;
 }
 
+/**
+ * Load article's detail from server side
+ */
 export async function getServerSideProps(context) {
   const newsIds = context?.params?.newsId ?? "";
   const newsId = join(newsIds, "/");
+  let news: INews | null = null;
 
-  const newsRes = await API.detail(newsId as any, {
-    "show-fields": "thumbnail,trailText,headline,body",
-  });
-  const news = newsRes?.data?.response?.content;
+  if (newsId?.length) {
+    const newsRes = await API.detail(newsId as string, {
+      "show-fields": "thumbnail,trailText,headline,body",
+    });
+    news = newsRes?.data?.response?.content;
+  }
 
   return {
     props: {

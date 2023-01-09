@@ -7,6 +7,9 @@ interface IBookmarkButton {
   onClick: any;
 }
 
+/**
+ * Button with bookmark icon
+ */
 const BookmarkButton = ({
   content = "view bookmark",
   onClick,

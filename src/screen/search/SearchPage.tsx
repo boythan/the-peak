@@ -25,19 +25,28 @@ const SearchPage = ({ search }: ISearchPageProps) => {
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
   const [loadingMore, setLoadingMore] = useState(false);
   const pageIndex = useRef(1);
-  const { fecthNews } = useContext(AppLayoutContext);
+  const { fetchNews } = useContext(AppLayoutContext);
   const [searchState, setSearchState] = useState<ISearchState>(InitSearchState);
 
+  /**
+   * Emitted when the first time render and whenever user select sort or search text
+   */
   useEffect(() => {
     pageIndex.current = 1;
     setSearchState(InitSearchState);
-    fecthNews([{ method: loadNews }]);
+    fetchNews([{ method: loadNews }]);
   }, [sortBy?.id, search]);
 
+  /**
+   * Emitted when user scroll down and load more
+   */
   useEffect(() => {
     loadingMore && loadNews();
   }, [loadingMore]);
 
+  /**
+   * listen window scroll and load more news items
+   */
   useEffect(() => {
     window.onscroll = function (ev) {
       if (
@@ -65,7 +74,6 @@ const SearchPage = ({ search }: ISearchPageProps) => {
       page: pageIndex.current,
       "page-size": 15,
       "order-by": sortBy?.id,
-      // section: "news",
     }).then((res: any) => {
       const newsListNew = res?.data?.response?.results ?? [];
       const total = res?.data?.response?.total ?? 0;

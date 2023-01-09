@@ -13,14 +13,17 @@ import { INews } from "../../interface/news";
 const HomePage = () => {
   const [topStories, setTopStories] = useState<INews[]>([]);
   const [sortBy, setSortBy] = useState(NEWS_HOME_SORT[0]);
-  const { fecthNews } = useContext(AppLayoutContext);
+  const { fetchNews } = useContext(AppLayoutContext);
 
   useEffect(() => {
     loadNews();
   }, [sortBy]);
 
+  /**
+   * Fetch news list for top stories view
+   */
   const loadNews = () => {
-    fecthNews(
+    fetchNews(
       [
         {
           method: API.search,

@@ -30,7 +30,7 @@ function AppLayout(props: AppLayoutProps) {
     useState<AppFetchNewsState | null>();
 
   /**
-   * after 3 seconds since app's notification is shown => hide notificaiton
+   * after 3 seconds since app's notification is shown => hide notification
    */
   useEffect(() => {
     if (appNotification) {
@@ -39,7 +39,7 @@ function AppLayout(props: AppLayoutProps) {
   }, [appNotification]);
 
   /**
-   * debounce user type searc box by 500ms
+   * debounce user type search box by 500ms
    */
   const onChangeSearch = debounce((event) => {
     setSearch(event?.target?.value);
@@ -51,7 +51,7 @@ function AppLayout(props: AppLayoutProps) {
    * If Promise function is rejected => show ErrorView
    * Promise functions's resolve will be passed to param resolve
    */
-  const fecthNews = (promiseFunction: IAppPromiseFunc[], resolve) => {
+  const fetchNews = (promiseFunction: IAppPromiseFunc[], resolve) => {
     if (!promiseFunction) {
       return;
     }
@@ -81,7 +81,7 @@ function AppLayout(props: AppLayoutProps) {
 
   const renderSiteBody = () => {
     if (fetchNewsState === AppFetchNewsState.ERROR) {
-      return renderFecthNewsError();
+      return renderFetchNewsError();
     }
     if (!isEmpty(search)) {
       return <SearchPage search={search} />;
@@ -90,7 +90,7 @@ function AppLayout(props: AppLayoutProps) {
     return children;
   };
 
-  const renderFecthNewsError = () => {
+  const renderFetchNewsError = () => {
     return (
       <div className="flex-center p-5">
         <h6>Oops! Error 404</h6>
@@ -99,7 +99,7 @@ function AppLayout(props: AppLayoutProps) {
   };
 
   return (
-    <AppLayoutContext.Provider value={{ fecthNews, setAppNotification }}>
+    <AppLayoutContext.Provider value={{ fetchNews, setAppNotification }}>
       <Fragment>
         <div className="site">
           <header className="site-header">

@@ -2,12 +2,12 @@ import React, { Dispatch, SetStateAction } from "react";
 import { IAppNotification } from "../interface/app";
 
 export interface IAppLayoutState {
-  fecthNews: (promiseFuntions: any, resolve?: any) => void;
-  setAppNotification: (noti: SetStateAction<IAppNotification | null>) => void;
+  fetchNews: (promiseFunctions: any, resolve?: any) => void;
+  setAppNotification: (notification: SetStateAction<IAppNotification | null>) => void;
 }
 
 const appLayoutState: IAppLayoutState = {
-  fecthNews: () => {},
+  fetchNews: () => {},
   setAppNotification: () => {},
 };
 

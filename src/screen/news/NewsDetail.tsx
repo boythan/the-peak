@@ -11,8 +11,8 @@ interface INewsDetail {
 }
 
 const NewsDetail = ({ news }: INewsDetail) => {
-  const { fields, id, webTitle, webPublicationDate } = news;
   const { setAppNotification } = useContext(AppLayoutContext);
+  const { fields, webTitle, webPublicationDate } = news;
 
   const [isBookmark, setIsBookmark] = useState(false);
 
@@ -27,12 +27,7 @@ const NewsDetail = ({ news }: INewsDetail) => {
     setIsBookmark(true);
     setAppNotification({
       type: AppNotificationType.SUCCESS,
-      content: (
-        <div className="d-flex">
-          <img src="/images/bookmark-on.svg" className="mr-2" />
-          <text className="text-white">SAVED TO BOOKMARKS</text>
-        </div>
-      ),
+      content: renderSavedBookmarkAlert(),
     });
   };
 
@@ -41,14 +36,23 @@ const NewsDetail = ({ news }: INewsDetail) => {
     setIsBookmark(false);
     setAppNotification({
       type: AppNotificationType.ERROR,
-      content: (
-        <div className="d-flex">
-          <img src="/images/bookmark-off.svg" className="mr-2" />
-          <text className="text-white">REMOVED FROM BOOKMARKS</text>
-        </div>
-      ),
+      content: renderRemovedBookmarkAlert(),
     });
   };
+
+  const renderSavedBookmarkAlert = () => (
+    <div className="d-flex">
+      <img src="/images/bookmark-on.svg" className="mr-2" />
+      <text className="text-white">SAVED TO BOOKMARKS</text>
+    </div>
+  );
+
+  const renderRemovedBookmarkAlert = () => (
+    <div className="d-flex">
+      <img src="/images/bookmark-off.svg" className="mr-2" />
+      <text className="text-white">REMOVED FROM BOOKMARKS</text>
+    </div>
+  );
 
   return (
     <div className="container">
